@@ -1,0 +1,32 @@
+spring:
+  profiles:
+    active: dev
+  jackson:
+    default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      # 限制上传文件大小
+      max-file-size: 10MB
+      
+jwt:
+  # 签发人
+  issuer: quanxiaoha
+  # 秘钥
+  secret: gR6cytlUlgMfVh08nLFZf8hMk4mdJDX5rWBVlsCbKvRlWcLwNRU6+rIPcLx21x191kJgP8udtoZuHt5yUDWtgg==
+  # token 过期时间（单位：分钟） 24*60
+  tokenExpireTime: 1440
+  # token Header 中的 key 值
+  tokenHeaderKey: Authorization
+  # token Header 中的 value 值前缀
+  tokenPrefix: Bearer
+
+  
+#=================================================================
+# minio
+#=================================================================
+minio:
+  endpoint: https://img.quanxiaoha.com
+  accessKey: 18019939108
+  secretKey: jiangbing1991
+  bucketName: quanxiaoha

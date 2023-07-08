@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.quanxiaoha</groupId>
+    <artifactId>weblog-springboot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>weblog-springboot</name>
+    <description>weblog-springboot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <!-- 多模块项目父工程必须指定为 pom -->
+    <packaging>pom</packaging>
+    <!-- 模块管理 -->
+    <modules>
+        <module>weblog-module-common</module>
+        <module>weblog-module-admin</module>
+        <module>weblog-module-jwt</module>
+        <!-- 入口 -->
+        <module>weblog-web</module>
+    </modules>
+
+    <!-- 统一版本管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.quanxiaoha</groupId>
+                <artifactId>weblog-module-common</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.quanxiaoha</groupId>
+                <artifactId>weblog-module-admin</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.quanxiaoha</groupId>
+                <artifactId>weblog-module-jwt</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.quanxiaoha</groupId>
+                <artifactId>weblog-web</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
