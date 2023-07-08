@@ -1,0 +1,42 @@
+{
+  "name": "weblog",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@vueuse/core": "^10.0.2",
+    "@vueuse/integrations": "^10.0.2",
+    "ant-design-vue": "^3.2.19",
+    "antd": "^5.4.5",
+    "axios": "^1.3.5",
+    "echarts": "^5.4.2",
+    "editor.md": "^1.5.0",
+    "element-plus": "^2.3.3",
+    "gasp": "^0.0.2",
+    "gsap": "^3.11.5",
+    "mavon-editor": "^3.0.1",
+    "md-editor-v3": "^3.0.1",
+    "moment": "^2.29.4",
+    "universal-cookie": "^4.0.4",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vicons/ionicons5": "^0.12.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "naive-ui": "^2.34.3",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2",
+    "vfonts": "^0.0.3",
+    "vite": "^4.1.4",
+    "vite-plugin-windicss": "^1.8.10",
+    "windicss": "^3.5.6"
+  }
+}
