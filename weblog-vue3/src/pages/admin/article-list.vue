@@ -66,7 +66,6 @@
     <el-dialog v-model="isArticlePublishEditorShow" fullscreen="true" :show-close="false" :modal="false">
 
         <template #header="{ close, titleId, titleClass }">
-
             <div class="">
                 <div class="my-header flex justify-between">
                         <h4 class="font-bold">写文章</h4>
@@ -80,12 +79,9 @@
                             </el-button>
                         </div>
                     </div>
-
             </div>
-
-
         </template>
-        <el-form :model="form" ref="formRef" label-position="top" :size="large" :rules="rules">
+        <el-form :model="form" ref="publishArticleFormRef" label-position="top" :size="large" :rules="rules">
             <el-form-item label="标题" prop="title">
                 <el-input v-model="form.title" autocomplete="off" size="large" maxlength="40" show-word-limit clearable />
             </el-form-item>
@@ -105,7 +101,7 @@
             <el-form-item label="摘要" prop="description">
                 <el-input v-model="form.description" :rows="3" type="textarea" placeholder="请输入文章摘要" />
             </el-form-item>
-            <el-form-item label="分类" prop="category">
+            <el-form-item label="分类" prop="categoryId">
                 <el-select v-model="form.categoryId" clearable placeholder="---请选择---" size="large">
                     <el-option v-for="item in categories" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
@@ -138,7 +134,7 @@
                 </div>
             </div>
         </template>
-        <el-form :model="form" ref="formRef" label-position="top" :size="large" :rules="rules">
+        <el-form :model="form" ref="updateArticleFormRef" label-position="top" :size="large" :rules="rules">
             <el-form-item label="标题" prop="title">
                 <el-input v-model="form.title" autocomplete="off" size="large" maxlength="40" show-word-limit clearable />
             </el-form-item>
@@ -158,7 +154,7 @@
             <el-form-item label="摘要" prop="description">
                 <el-input v-model="form.description" :rows="3" type="textarea" placeholder="请输入文章摘要" />
             </el-form-item>
-            <el-form-item label="分类" prop="category">
+            <el-form-item label="分类" prop="categoryId">
                 <el-select v-model="form.categoryId" clearable placeholder="---请选择---" size="large">
                     <el-option v-for="item in categories" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
@@ -318,15 +314,16 @@ const form = reactive({
 })
 
 
-const formRef = ref(null)
+const publishArticleFormRef = ref(null)
+const updateArticleFormRef = ref(null)
 const rules = {
     title: [
         { required: true, message: '请输入文章标题', trigger: 'blur' },
-        { min: 1, max: 20, message: '文章标题要求大于1个字符，小于20个字符', trigger: 'blur' },
+        { min: 1, max: 40, message: '文章标题要求大于1个字符，小于40个字符', trigger: 'blur' },
     ],
     content: [{ required: true }],
     titleImage: [{ required: true }],
-    category: [{ required: true, message: '请选择文章分类', trigger: 'blur' }],
+    categoryId: [{ required: true, message: '请选择文章分类', trigger: 'blur' }],
     tags: [{ required: true, message: '请选择文章标签', trigger: 'blur' }],
     description: [{ required: true, message: '请输入文章摘要', trigger: 'blur' }],
 }
@@ -371,7 +368,11 @@ const handleSizeChange = (e) => {
 const onSubmit = () => {
     isArticlePublishEditorShow.value = true
     console.log('提交内容' + form.content)
-    publishArticle(form).then((e) => {
+    publishArticleFormRef.value.validate((valid) => {
+        if (!valid) {
+            return false
+        }
+        publishArticle(form).then((e) => {
         console.log(e)
         if (e.success == false) {
             var message = e.message
@@ -383,12 +384,17 @@ const onSubmit = () => {
         isArticlePublishEditorShow.value = false
         location.reload()
     })
+    })
 }
 
 const updateSubmit = () => {
     isArticleUpdateEditorShow.value = true
     console.log('提交内容' + form.content)
-    updateArticle(form).then((e) => {
+    updateArticleFormRef.value.validate((valid) => {
+        if (!valid) {
+            return false
+        }
+        updateArticle(form).then((e) => {
         console.log(e)
         if (e.success == false) {
             var message = e.message
@@ -399,6 +405,7 @@ const updateSubmit = () => {
         showMessage('修改成功', 'success', 'message')
         isArticleUpdateEditorShow.value = false
         location.reload()
+    })
     })
 }
 
