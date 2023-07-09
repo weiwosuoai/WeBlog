@@ -113,5 +113,5 @@
 
 ### 博客详情
 
-![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168888819375351 "博客详情页")
+![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168888881874564 "博客详情页")
 
