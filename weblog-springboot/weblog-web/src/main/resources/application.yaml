@@ -26,7 +26,7 @@ jwt:
 # minio
 #=================================================================
 minio:
-  endpoint: https://img.xxx.com
+  endpoint: https://img.quanxiaoha.com
   accessKey: xxx
   secretKey: xxx
   bucketName: xxx
