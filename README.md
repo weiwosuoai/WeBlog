@@ -101,7 +101,7 @@
 
 ### 文章管理
 
-![Weblog 文章管理](https://img.quanxiaoha.com/quanxiaoha/168887779321579 "Weblog 文章管理")
+![Weblog 文章管理](https://img.quanxiaoha.com/quanxiaoha/168888895520650 "Weblog 文章管理")
 
 ### 写博客
 
