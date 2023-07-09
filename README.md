@@ -4,6 +4,8 @@
 
 一款由 Spring Boot + Vue 3.2 开发的前后端分离博客。
 
+![Weblog 登录界面](https://img.quanxiaoha.com/quanxiaoha/168887753888612 "Weblog 登录界面")
+
 ## 相关地址
 
 - GitHub 地址：[https://github.com/weiwosuoai/WeBlog](https://github.com/weiwosuoai/WeBlog)
