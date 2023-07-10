@@ -10,6 +10,9 @@
 
 - GitHub 地址：[https://github.com/weiwosuoai/WeBlog](https://github.com/weiwosuoai/WeBlog)
 - Gitee 地址：[https://gitee.com/AllenJiang/WeBlog](https://gitee.com/AllenJiang/WeBlog)
+- 演示地址：http://118.31.41.16:8081/
+  - 游客账号：test
+  - 游客密码：test
 
 ## 功能
 

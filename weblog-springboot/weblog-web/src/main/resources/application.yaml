@@ -1,3 +1,7 @@
+server:
+  # 端口号
+  port: 8081
+
 spring:
   profiles:
     active: dev
@@ -26,7 +30,7 @@ jwt:
 # minio
 #=================================================================
 minio:
-  endpoint: https://img.quanxiaoha.com
+  endpoint: https://img.xxx.com
   accessKey: xxx
   secretKey: xxx
   bucketName: xxx

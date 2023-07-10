@@ -19,12 +19,14 @@
     "element-plus": "^2.3.3",
     "gasp": "^0.0.2",
     "gsap": "^3.11.5",
+    "highlight.js": "^11.8.0",
     "mavon-editor": "^3.0.1",
     "md-editor-v3": "^3.0.1",
     "moment": "^2.29.4",
     "universal-cookie": "^4.0.4",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
+    "vue3-highlightjs": "^1.0.5",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

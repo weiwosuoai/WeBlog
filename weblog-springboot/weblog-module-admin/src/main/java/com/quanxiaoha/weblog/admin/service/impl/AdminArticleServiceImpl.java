@@ -49,7 +49,7 @@ public class AdminArticleServiceImpl implements AdminArticleService {
     }
 
     @Override
-    // @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public Response publishArticle(PublishArticleReqVO publishArticleReqVO) {
         boolean isExecuteSuccess = transactionTemplate.execute(status -> {
             ArticleDO articleDO = ArticleDO.builder()
