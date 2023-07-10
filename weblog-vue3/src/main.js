@@ -9,6 +9,8 @@ import store from './store'
 import "@/permission"
 
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import VueHighlightJS from 'vue3-highlightjs'
+import 'vue3-highlightjs/styles/monokai-sublime.css'
 
 // import './assets/main.css'
 
@@ -17,6 +19,8 @@ const app = createApp(App)
 app.use(store)
 app.use(router)
 app.use(ElementPlus, { locale: zhCn })
+
+app.use(VueHighlightJS)
 
 // 引入图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

@@ -37,7 +37,7 @@
                             2023-04-26 12:00:00
                         </div>
 
-                        <div class="article-content" v-html="article.content">
+                        <div class="article-content" v-html="article.content" v-highlightjs>
                         </div>
                     </article>
                     <!-- 上下篇 -->
@@ -207,6 +207,26 @@ const goTagArticleListPage = (id, name) => {
     margin-bottom: 20px;
 }
 
+:deep(pre) {
+    background: #21252b;
+    color: #f8f8f2;
+    border-radius: 5px;
+    padding: 32px 0 0;
+    font-size: 16px;
+}
+
+:deep(pre:before) {
+    background: #fc625d;
+    border-radius: 50%;
+    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+    content: ' ';
+    height: 10px;
+    left: 45px;
+    margin-top: -20px;
+    position: absolute;
+    width: 10px;
+}
+
 :deep(.article-content p) {
     letter-spacing: 0.3px;
     margin: 0 0 20px 0;
@@ -231,12 +251,33 @@ const goTagArticleListPage = (id, name) => {
     text-align: center;
 }
 
+:deep(pre) {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
 :deep(code) {
-    padding: 2px 4px;
-    margin: 0 2px;
+    display: inline;
+    font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+:deep(article ul) {
+    padding-left: 40px;
+}
+
+:deep(article ul li) {
+    list-style-type: disc;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+
+:deep(pre code) {
+    display: block;
     font-size: 95% !important;
-    border-radius: 4px;
-    color: rgb(41, 128, 185);
     background-color: rgba(27, 31, 35, 0.05);
     font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
 }

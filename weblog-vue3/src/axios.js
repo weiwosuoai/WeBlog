@@ -5,7 +5,8 @@ import store from "@/store";
 import { Console } from "windicss/utils";
 
 const instance = axios.create({
-    baseURL: '/api',
+    // baseURL: '/api',
+    baseURL: '/',
     timeout: 7000
 });
 
