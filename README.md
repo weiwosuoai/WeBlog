@@ -4,7 +4,13 @@
 
 一款由 Spring Boot + Vue 3.2 开发的前后端分离博客。
 
-![Weblog 登录界面](https://img.quanxiaoha.com/quanxiaoha/168887753888612 "Weblog 登录界面")
+![Weblog 后台仪表盘](https://img.quanxiaoha.com/quanxiaoha/168887767469647 "Weblog 后台仪表盘")
+
+- 后端采用 Spring Boot 、Mybatis Plus 、MySQL 、Spring Sericuty、JWT、Minio、Guava 等；
+- 后台管理采用 Vue 3.2 + Element Plus 纯手写的管理后台，未采用任何 Admin 框架；
+- 支持博客 Markdown 格式发布与编辑、文章分类、文章标签的管理；
+- 支持博客基本信息的设置，以及社交主页的跳转；
+- 支持仪表盘数据统计，Echarts 文章发布热图统计、PV 访问量统计；
 
 ## 相关地址
 
@@ -13,6 +19,32 @@
 - 演示地址：http://118.31.41.16:8081/
   - 游客账号：test
   - 游客密码：test
+
+## 演示截图
+
+### 登录页
+
+![Weblog 登录界面](https://img.quanxiaoha.com/quanxiaoha/168887753888612 "Weblog 登录界面")
+
+### 仪表盘
+
+![Weblog 后台仪表盘](https://img.quanxiaoha.com/quanxiaoha/168887767469647 "Weblog 后台仪表盘")
+
+### 文章管理
+
+![Weblog 文章管理](https://img.quanxiaoha.com/quanxiaoha/168888895520650 "Weblog 文章管理")
+
+### 写博客
+
+![写博客](https://img.quanxiaoha.com/quanxiaoha/168887786123214 "写博客")
+
+### 前台首页
+
+![博客首页](https://img.quanxiaoha.com/quanxiaoha/168888775123810 "博客首页")
+
+### 博客详情
+
+![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168888881874564 "博客详情页")
 
 ## 功能
 
@@ -93,30 +125,5 @@
 | md-editor-v3 | Markdown 编辑器组件             | 3.0.1  |
 | windicss     | CSS 工具类框架                  | 3.5.6  |
 | axios        | 基于 Promise 的网络请求库       | 1.3.5  |
-
-## 演示截图
-
-### 登录页
-
-![Weblog 登录界面](https://img.quanxiaoha.com/quanxiaoha/168887753888612 "Weblog 登录界面")
-
-### 仪表盘
-
-![Weblog 后台仪表盘](https://img.quanxiaoha.com/quanxiaoha/168887767469647 "Weblog 后台仪表盘")
-
-### 文章管理
-
-![Weblog 文章管理](https://img.quanxiaoha.com/quanxiaoha/168888895520650 "Weblog 文章管理")
-
-### 写博客
-
-![写博客](https://img.quanxiaoha.com/quanxiaoha/168887786123214 "写博客")
-
-### 前台首页
-
-![博客首页](https://img.quanxiaoha.com/quanxiaoha/168888775123810 "博客首页")
-
-### 博客详情
-
-![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168888881874564 "博客详情页")
+| Echarts      | 百度开源的数据可视化图表库      | 5.4.2  |
 
