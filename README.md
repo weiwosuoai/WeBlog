@@ -7,7 +7,7 @@
 ![Weblog 后台仪表盘](https://img.quanxiaoha.com/quanxiaoha/168887767469647 "Weblog 后台仪表盘")
 
 - 后端采用 Spring Boot 、Mybatis Plus 、MySQL 、Spring Sericuty、JWT、Minio、Guava 等；
-- 后台管理采用 Vue 3.2 + Element Plus 纯手动搭建的管理后台，未采用任何 Admin 框架；
+- 后台管理采用 Vue 3.2 + Element Plus 纯手写的管理后台，未采用任何 Admin 框架；
 - 支持博客 Markdown 格式发布与编辑、文章分类、文章标签的管理；
 - 支持博客基本信息的设置，以及社交主页的跳转；
 - 支持仪表盘数据统计，Echarts 文章发布热图统计、PV 访问量统计；
