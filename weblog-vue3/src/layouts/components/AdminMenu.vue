@@ -109,6 +109,7 @@ const handleSelect = (e) => {
 
 .admin-el-menu {
     background-color: #001428!important;
+    border-right: 0;
 }
 
 .admin-el-menu-item {
