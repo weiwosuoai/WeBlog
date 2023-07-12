@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // .addFilterAt(jwtAuthenticationFilter(), AbstractPreAuthenticatedProcessingFilter.class)
                 .csrf().disable()
             .authorizeRequests()
-                .mvcMatchers("/admin/*").authenticated()
+                .mvcMatchers("/admin/**").authenticated()
                 .anyRequest().permitAll()
             .and()
                 .httpBasic().authenticationEntryPoint(authEntryPoint)

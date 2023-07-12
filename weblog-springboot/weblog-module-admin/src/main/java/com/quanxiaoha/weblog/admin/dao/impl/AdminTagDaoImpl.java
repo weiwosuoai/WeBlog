@@ -44,7 +44,7 @@ public class AdminTagDaoImpl implements AdminTagDao {
         // OR NAME LIKE LOWER(CONCAT('%', 'j', '%')) order by name
         QueryWrapper<TagDO> wrapper = new QueryWrapper<>();
         wrapper.lambda()
-                .apply("NAME like UPPER(CONCAT('%', '" + key + "', '%')) OR NAME LIKE LOWER(CONCAT('%', '" + key + "', '%'))")
+                .apply("NAME like UPPER(CONCAT('%', {0}, '%')) OR NAME LIKE LOWER(CONCAT('%', {0}, '%'))", key)
                 .orderByAsc(TagDO::getName);
         return tagMapper.selectList(wrapper);
     }

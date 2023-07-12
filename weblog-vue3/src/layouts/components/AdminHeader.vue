@@ -1,51 +1,54 @@
 <template>
-    <div class="header">
-        <!-- 展开、收缩侧边栏 -->
-        <el-icon class="icon-btn" @click="$store.commit('HANDLE_MENU_WIDTH')">
-            <Fold v-if="$store.state.menuWidth == '250px'" />
-            <Expand v-else />
-        </el-icon>
+    <el-affix :offset="0">
+        <div class="header">
+            <!-- 展开、收缩侧边栏 -->
+            <el-icon class="icon-btn" @click="$store.commit('HANDLE_MENU_WIDTH')">
+                <Fold v-if="$store.state.menuWidth == '250px'" />
+                <Expand v-else />
+            </el-icon>
 
-        <div class="ml-auto flex justify-center items-center">
-            <!-- 跳转博客前台 -->
-            <el-tooltip class="box-item" effect="dark" content="跳转博客前台" placement="bottom">
-                <el-icon class="icon-btn" @click="router.push('/')">
-                    <House />
-                </el-icon>
-            </el-tooltip>
-
-            <!-- 刷新 -->
-            <el-tooltip class="box-item" effect="dark" content="刷新" placement="bottom">
-                <el-icon class="icon-btn" @click="refresh">
-                    <Refresh />
-                </el-icon>
-            </el-tooltip>
-
-            <!-- 全屏 -->
-            <el-tooltip class="box-item" effect="dark" content="全屏" placement="bottom">
-                <el-icon class="icon-btn" @click="toggle">
-                    <FullScreen v-if="!isFullscreen" />
-                    <Aim v-else />
-                </el-icon>
-            </el-tooltip>
-
-            <el-dropdown class="dropdown" @command="handleCommand">
-                <span class="flex justify-center items-center">
-                    <el-avatar :size="25" :src="$store.state.user.avatar" class="mr-2" />
-                    {{ $store.state.user.username }}
-                    <el-icon class="el-icon--right">
-                        <arrow-down />
+            <div class="ml-auto flex justify-center items-center">
+                <!-- 跳转博客前台 -->
+                <el-tooltip class="box-item" effect="dark" content="跳转博客前台" placement="bottom">
+                    <el-icon class="icon-btn" @click="router.push('/')">
+                        <House />
                     </el-icon>
-                </span>
-                <template #dropdown>
-                    <el-dropdown-menu>
-                        <el-dropdown-item command="updatePassword">修改密码</el-dropdown-item>
-                        <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </template>
-            </el-dropdown>
+                </el-tooltip>
+
+                <!-- 刷新 -->
+                <el-tooltip class="box-item" effect="dark" content="刷新" placement="bottom">
+                    <el-icon class="icon-btn" @click="refresh">
+                        <Refresh />
+                    </el-icon>
+                </el-tooltip>
+
+                <!-- 全屏 -->
+                <el-tooltip class="box-item" effect="dark" content="全屏" placement="bottom">
+                    <el-icon class="icon-btn" @click="toggle">
+                        <FullScreen v-if="!isFullscreen" />
+                        <Aim v-else />
+                    </el-icon>
+                </el-tooltip>
+
+                <el-dropdown class="dropdown" @command="handleCommand">
+                    <span class="flex justify-center items-center">
+                        <el-avatar :size="25" :src="$store.state.user.avatar" class="mr-2" />
+                        {{ $store.state.user.username }}
+                        <el-icon class="el-icon--right">
+                            <arrow-down />
+                        </el-icon>
+                    </span>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item command="updatePassword">修改密码</el-dropdown-item>
+                            <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
+            </div>
         </div>
-    </div>
+    </el-affix>
+
 
     <!-- 修改密码 -->
     <el-dialog v-model="dialogShow" title="修改密码" width="30%" :show-close="false">
@@ -211,9 +214,7 @@ function logout() {
 .header .dropdown {
     height: 64px;
     cursor: pointer;
-    color: #374151!important;
+    color: #374151 !important;
     @apply flex justify-center items-center text-light-50 mx-5;
 }
-
-
 </style>
