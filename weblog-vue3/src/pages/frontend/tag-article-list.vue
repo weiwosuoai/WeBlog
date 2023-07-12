@@ -19,7 +19,7 @@
                     {{ tagName }}
                 </div>
                 <!-- 文章列表 -->
-                <div class="el-card mb-3" v-if="articles.length > 0" v-for="(article, index) in articles" :key="index">
+                <div class="el-card mb-3" v-if="articles && articles.length > 0" v-for="(article, index) in articles" :key="index">
                     <el-row :gutter="20">
                         <el-col :span="10" :offset="0">
                             <a class="cursor-pointer" @click="goArticleDetail(article.id)">
@@ -84,6 +84,21 @@
             </el-col>
             <el-col :span="7" :offset="0">
                 <UserInfoCard></UserInfoCard>
+
+                <!-- 文章分类 -->
+                <el-card shadow="none" class="mb-5">
+                        <h2 class="font-bold mb-2">分类</h2>
+                        <ul class="text-gray-500 ml-2">
+                            <li class="flex items-center" v-for="(item, index) in categories" :key="index">
+                                <a class="category-item" @click="goCatagoryArticleListPage(item.id, item.name)">
+                                    <el-icon class="mr-1">
+                                        <FolderOpened />
+                                    </el-icon>
+                                    {{ item.name }}
+                                </a>
+                            </li>
+                        </ul>
+                    </el-card>
             </el-col>
         </el-row>
     </div>
@@ -98,6 +113,7 @@ import UserInfoCard from '@/components/UserInfoCard.vue'
 import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue'
 import { getTagArticles } from '@/api/frontend/tag'
+import { getCategories } from '@/api/frontend/category'
 
 const router = useRouter()
 const route = useRoute()
@@ -134,6 +150,16 @@ getArticles()
 const goCatagoryArticleListPage = (id, name) => {
     router.push({ path: '/category/list', query: { id: id, name: name } })
 }
+
+// 获取分类
+const categories = ref([])
+getCategories().then((e) => {
+    console.log('获取分类数据')
+    console.log(e)
+    categories.value = e.data
+})
+
+
 
 </script>
 

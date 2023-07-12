@@ -19,7 +19,7 @@
                                 {{ categoryName }}
                 </div>
                 <!-- 文章列表 -->
-                <div class="el-card mb-3" v-if="articles.length > 0" v-for="(article, index) in articles" :key="index">
+                <div class="el-card mb-3" v-if="articles && articles.length > 0" v-for="(article, index) in articles" :key="index">
                     <el-row :gutter="20">
                         <el-col :span="10" :offset="0">
                             <a class="cursor-pointer" @click="goArticleDetail(article.id)">
