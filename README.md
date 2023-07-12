@@ -7,7 +7,7 @@
 ![Weblog 后台仪表盘](https://img.quanxiaoha.com/quanxiaoha/168887767469647 "Weblog 后台仪表盘")
 
 - 后端采用 Spring Boot 、Mybatis Plus 、MySQL 、Spring Sericuty、JWT、Minio、Guava 等；
-- 后台管理采用 Vue 3.2 + Element Plus 纯手写的管理后台，未采用任何 Admin 框架；
+- 后台管理基于 Vue 3.2 + Element Plus 纯手动搭建的管理后台，未采用任何 Admin 框架；
 - 支持博客 Markdown 格式发布与编辑、文章分类、文章标签的管理；
 - 支持博客基本信息的设置，以及社交主页的跳转；
 - 支持仪表盘数据统计，Echarts 文章发布热图统计、PV 访问量统计；
@@ -16,10 +16,10 @@
 
 - GitHub 地址：[https://github.com/weiwosuoai/WeBlog](https://github.com/weiwosuoai/WeBlog)
 - Gitee 地址：[https://gitee.com/AllenJiang/WeBlog](https://gitee.com/AllenJiang/WeBlog)
-- 演示地址：http://118.31.41.16:8081/
+- 演示地址：http://118.31.41.16/
   - 游客账号：test
   - 游客密码：test
-   > PS: 演示环境的服务器配置很低，资源紧张，导致响应较慢，你可部署到本地，或者换个时间段访问~
+   > PS: 演示环境的服务器配置很低，带宽很小，另加前端项目打包的 js 过大，导致第一次访问加载很慢（正在解决中），你可以部署到本地来访问~
     
 
 ## 演示截图

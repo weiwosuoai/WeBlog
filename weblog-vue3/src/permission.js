@@ -11,7 +11,7 @@ router.beforeEach(async (to, from, next) => {
     // else next()
 
     // 设置页面标题
-    let title = (to.meta.title ? to.meta.title : '') + '- WeBlog'
+    let title = (to.meta.title ? to.meta.title : '') + ' - WeBlog'
     document.title = title
 
     const token = getToken()
