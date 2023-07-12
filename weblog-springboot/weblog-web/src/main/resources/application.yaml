@@ -6,7 +6,8 @@ spring:
   profiles:
     active: dev
   jackson:
-    default-property-inclusion: non_null
+    # 设置后台返参，若字段值为 null, 是否返回
+#    default-property-inclusion: non_null
     date-format: yyyy-MM-dd HH:mm:ss
   servlet:
     multipart:
