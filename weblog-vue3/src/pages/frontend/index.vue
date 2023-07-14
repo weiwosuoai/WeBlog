@@ -1,20 +1,35 @@
 <template>
     <Header></Header>
 
-    <div class="container mx-auto mt-5">
-        <el-row :gutter="20">
-            <el-col :span="17" :offset="0">
-                <!-- 轮播图 -->
-                <!-- <el-card class="mb-5" shadow="none">
-                    <el-carousel :interval="4000" type="card" :autoplay="true">
-                        <el-carousel-item v-for="item in images" :key="item">
-                            <a href="#"><img :src="item"></a>
-                        </el-carousel-item>
-                    </el-carousel>
-                </el-card> -->
-
+    <div class="container mx-auto max-w-screen-xl mt-5">
+        <div class="grid grid-cols-4">
+            <!-- 左边栏 -->
+            <div class="col-span-4 px-3 md:col-span-3 sm:col-span-4">
                 <!-- 文章列表 -->
-                <div class="el-card mb-3" v-for="(article, index) in articles" :key="index">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
+                    <div v-for="(article, index) in articles" :key="index"
+                        class="bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                        <a @click="goArticleDetail(article.id)" class="cursor-pointer">
+                            <img class="rounded-t-lg h-50 w-full" :src="article.titleImage" />
+                        </a>
+                        <div class="p-5">
+                            <a @click="goArticleDetail(article.id)" class="cursor-pointer">
+                                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{
+                                    article.title }}</h2>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{ article.description }}</p>
+                            <p>
+                            <div @click="goTagArticleListPage(item.id, item.name)" v-for="(item, index) in article.tags"
+                                :key="index"
+                                class="inline-block bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300 dark:bg-green-900 dark:text-green-300">
+                                {{ item.name }}
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="el-card mb-3" v-for="(article, index) in articles" :key="index">
                     <el-row :gutter="20">
                         <el-col :span="10" :offset="0">
                             <a class="cursor-pointer" @click="goArticleDetail(article.id)">
@@ -75,48 +90,53 @@
                             </div>
                         </el-col>
                     </el-row>
-                </div>
+                </div> -->
 
                 <!-- 分页 -->
-                <div class="flex justify-center">
-                    <el-pagination class="mt-5" v-model:current-page="current" v-model:page-size="size" :small="small"
+                <div class="flex justify-center mt-50px mb-5">
+                    <el-pagination v-model:current-page="current" v-model:page-size="size" :small="small"
                         :disabled="disabled" background="true" layout="prev, pager, next" :total="total"
                         @current-change="getArticles" />
                 </div>
-            </el-col>
-            <el-col :span="7" :offset="0">
-                <el-affix :offset="70">
+
+            </div>
+            <!-- 右边栏 -->
+            <div class="col-span-4 px-3 md:col-span-1 sm:col-span-4">
+                <div class="sticky top-21">
                     <UserInfoCard></UserInfoCard>
 
                     <!-- 文章分类 -->
-                    <el-card shadow="none" class="mb-5">
-                        <h2 class="font-bold mb-2">分类</h2>
-                        <ul class="text-gray-500 ml-2">
-                            <li class="flex items-center" v-for="(item, index) in categories" :key="index">
-                                <a class="category-item" @click="goCatagoryArticleListPage(item.id, item.name)">
-                                    <el-icon class="mr-1">
-                                        <FolderOpened />
-                                    </el-icon>
-                                    {{ item.name }}
-                                </a>
-                            </li>
-                        </ul>
-                    </el-card>
+                    <div class="mb-3 w-full font-medium p-5 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                        <h2 class="mb-2 font-bold text-gray-900 uppercase dark:text-white">分类</h2>
+                        <div
+                            class="w-48 text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <a @click="goCatagoryArticleListPage(item.id, item.name)" v-for="(item, index) in categories"
+                                :key="index"
+                                class="flex items-end block w-full px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                <svg class="w-4 h-4 mr-2 mb-2px text-gray-800 inline dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="0.9"
+                                        d="M2.539 17h12.476l4-9H5m-2.461 9a1 1 0 0 1-.914-1.406L5 8m-2.461 9H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.443a1 1 0 0 1 .8.4l2.7 3.6H16a1 1 0 0 1 1 1v2H5" />
+                                </svg>
+                                {{ item.name }}
+                            </a>
+                        </div>
+
+                    </div>
 
                     <!-- 文章标签 -->
-                    <el-card shadow="none">
-                        <h2 class="font-bold mb-2">标签</h2>
-                        <ul class="flex flex-wrap">
-                            <li v-for="(item, index) in tags" :key="index">
-                                <a class="tag-item" @click="goTagArticleListPage(item.id, item.name)">
-                                    <el-tag class="mr-2 mb-2" type="info">{{ item.name }}</el-tag>
-                                </a>
-                            </li>
-                        </ul>
-                    </el-card>
-                </el-affix>
-            </el-col>
-        </el-row>
+                    <div
+                        class="mb-3 w-full font-medium p-5 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                        <h2 class="mb-2 font-bold text-gray-900 uppercase dark:text-white">标签</h2>
+                        <div @click="goTagArticleListPage(item.id, item.name)" v-for="(item, index) in tags" :key="index"
+                            class="inline-block bg-green-100 text-green-800 text-xs font-medium mr-2 mb-1 px-2.5 py-0.5 rounded hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300 dark:bg-green-900 dark:text-green-300">
+                            {{ item.name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <Footer></Footer>
@@ -232,5 +252,4 @@ const goTagArticleListPage = (id, name) => {
 .cursor-pointer {
     cursor: pointer;
 }
-
 </style>

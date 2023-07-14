@@ -172,7 +172,7 @@
 </template>
 
 <script setup>
-import { ElMessage, ElMessageBox } from 'element-plus'
+// import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, reactive } from 'vue';
 // import MDEditor from '@/components/MDEditor.vue'
 import { publishArticle, getArticlePageList, deleteArticle, getArticleDetail, updateArticle } from '@/api/admin/article'
@@ -490,6 +490,14 @@ const remoteMethod = (query) => {
 </style>
 
 <style>
+.w-50 {
+    width: 12.5rem!important;
+}
+
+.mr-3 {
+    margin-right: 0.75rem!important;
+}
+
 .avatar-uploader .el-upload {
     border: 1px dashed var(--el-border-color);
     border-radius: 6px;
