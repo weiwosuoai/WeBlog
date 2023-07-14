@@ -2,62 +2,41 @@
     <Header></Header>
 
     <!-- 文章列表 -->
-    <div class="container mx-auto mt-5">
-        <el-row :gutter="20">
-            <el-col :span="17" :offset="0">
-                <!-- 分类标题 -->
-                <div class="flex items-center mb-3 font-black font-bold category-container">
-                    <svg t="1682517355246" class="icon mr-2" viewBox="0 0 1024 1024" version="1.1"
-                        xmlns="http://www.w3.org/2000/svg" p-id="26989" width="25" height="25">
-                        <path
-                            d="M940.8 521.6l-448-448C486.4 67.2 480 64 470.4 64L124.8 64C92.8 64 64 92.8 64 124.8l0 345.6c0 9.6 3.2 16 9.6 22.4l448 448c12.8 12.8 28.8 19.2 44.8 19.2 16 0 32-6.4 44.8-19.2L940.8 608C966.4 585.6 966.4 544 940.8 521.6zM566.4 896 128 457.6 128 128l329.6 0L896 566.4 566.4 896z"
-                            p-id="26990" fill="#707070"></path>
-                        <path
-                            d="M288 192C233.6 192 192 233.6 192 288s41.6 96 96 96 96-41.6 96-96S342.4 192 288 192zM288 320c-19.2 0-32-12.8-32-32s12.8-32 32-32 32 12.8 32 32S307.2 320 288 320z"
-                            p-id="26991" fill="#707070"></path>
-                    </svg>
+    <div class="container mx-auto max-w-screen-xl mt-5">
+        <div class="grid grid-cols-4">
+            <!-- 左边栏 -->
+            <div class="col-span-4 px-3 md:col-span-3 sm:col-span-4">
+                <!-- 标签名称 -->
+                <div class="flex items-center mb-5 text-gray-600 font-bold text-2xl">
+                    <svg class="w-6 h-6 mr-2 text-gray-600 inline dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19 18">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.583 5.445h.01M8.86 16.71l-6.573-6.63a.993.993 0 0 1 0-1.4l7.329-7.394A.98.98 0 0 1 10.31 1l5.734.007A1.968 1.968 0 0 1 18 2.983v5.5a.994.994 0 0 1-.316.727l-7.439 7.5a.975.975 0 0 1-1.385.001Z"/>
+  </svg>
                     {{ tagName }}
                 </div>
-                <!-- 文章列表 -->
-                <div class="el-card mb-3" v-if="articles && articles.length > 0" v-for="(article, index) in articles" :key="index">
-                    <el-row :gutter="20">
-                        <el-col :span="10" :offset="0">
-                            <a class="cursor-pointer" @click="goArticleDetail(article.id)">
-                                <img class="article-img" :src="article.titleImage">
-                            </a>
-                        </el-col>
-                        <el-col :span="14" :offset="0" class="pt-3 pb-3">
-                            <div class="flex flex-col justify-between">
-                                <h2 class="text-black font-bold text-2xl">
-                                    <a class="cursor-pointer" @click="goArticleDetail(article.id)">{{ article.title }}</a>
-                                </h2>
-                                <div class="flex items-center text-gray-500 mt-3 text-sm">
-                                    <el-icon class="mr-1 text-3">
-                                        <Calendar />
-                                    </el-icon>
-                                    <span>{{ article.createTime }}</span>
-                                </div>
-                                <p class="pr-2 mt-3 text-gray-500 flex-grow text-sm">
-                                    {{ article.description }}
-                                </p>
-                                <div class="mt-3 flex bottom-0 text-sm">
-                                    <div class="text-gray-500">
-                                        <a @click="goCatagoryArticleListPage(article.category.id, article.category.name)"
-                                            class="flex items-center category-item">
-                                            <el-tooltip class="box-item" effect="dark" content="分类"
-                                                placement="bottom-start">
-                                                <el-icon class="mr-1">
-                                                    <FolderOpened />
-                                                </el-icon>
-                                            </el-tooltip>
-                                            {{ article.category.name }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </el-col>
-                    </el-row>
 
+                <!-- 文章列表 -->
+                <div v-if="articles && articles.length > 0" class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <div v-for="(article, index) in articles" :key="index"
+                        class="bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                        <a @click="goArticleDetail(article.id)" class="cursor-pointer">
+                            <img class="rounded-t-lg h-50 w-full" :src="article.titleImage" />
+                        </a>
+                        <div class="p-5">
+                            <a @click="goArticleDetail(article.id)" class="cursor-pointer">
+                                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{
+                                    article.title }}</h2>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{ article.description }}</p>
+                            <p>
+                            <div @click="goTagArticleListPage(item.id, item.name)" v-for="(item, index) in article.tags"
+                                :key="index"
+                                class="inline-block bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300 dark:bg-green-900 dark:text-green-300">
+                                {{ item.name }}
+                            </div>
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div v-else>
                     <div class="flex flex-col items-center mb-5">
@@ -75,32 +54,41 @@
                 </div>
 
                 <!-- 分页 -->
-                <div class="flex justify-center" v-if="total > 0">
+                <div class="flex justify-center mt-5">
                     <el-pagination class="mt-5" v-model:current-page="current" v-model:page-size="size" :small="small"
                         :disabled="disabled" background="true" layout="prev, pager, next" :total="total"
                         @current-change="getArticles" />
                 </div>
+            </div>
 
-            </el-col>
-            <el-col :span="7" :offset="0">
-                <UserInfoCard></UserInfoCard>
+            <!-- 右边栏 -->
+            <div class="col-span-4 px-3 md:col-span-1 sm:col-span-4">
+                <div class="sticky top-21">
+                    <UserInfoCard></UserInfoCard>
 
-                <!-- 文章分类 -->
-                <el-card shadow="none" class="mb-5">
-                        <h2 class="font-bold mb-2">分类</h2>
-                        <ul class="text-gray-500 ml-2">
-                            <li class="flex items-center" v-for="(item, index) in categories" :key="index">
-                                <a class="category-item" @click="goCatagoryArticleListPage(item.id, item.name)">
-                                    <el-icon class="mr-1">
-                                        <FolderOpened />
-                                    </el-icon>
-                                    {{ item.name }}
-                                </a>
-                            </li>
-                        </ul>
-                    </el-card>
-            </el-col>
-        </el-row>
+<!-- 文章分类 -->
+<div
+    class="mb-3 w-full font-medium p-5 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+    <h4 class="mb-2 font-bold text-gray-900 uppercase dark:text-white">分类</h4>
+    <div
+        class="text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+        <a @click="goCatagoryArticleListPage(item.id, item.name)" v-for="(item, index) in categories"
+            :key="index"
+            class="flex items-end block w-full px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+            <svg class="w-4 h-4 mr-2 mb-2px text-gray-800 inline dark:text-white" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 18">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                    stroke-width="0.9"
+                    d="M2.539 17h12.476l4-9H5m-2.461 9a1 1 0 0 1-.914-1.406L5 8m-2.461 9H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.443a1 1 0 0 1 .8.4l2.7 3.6H16a1 1 0 0 1 1 1v2H5" />
+            </svg>
+            {{ item.name }}
+        </a>
+    </div>
+</div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <Footer></Footer>
@@ -177,14 +165,6 @@ getCategories().then((e) => {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-}
-
-.category-container {
-    font-size: 2rem;
-}
-
-.cursor-pointer {
-    cursor: pointer;
 }
 
 </style>

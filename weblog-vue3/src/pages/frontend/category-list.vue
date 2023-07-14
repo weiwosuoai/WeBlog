@@ -1,47 +1,37 @@
 <template>
     <Header></Header>
-    <div class="container mx-auto mt-5">
-        <el-row :gutter="20">
-            <el-col :span="17" :offset="0">
-                <el-card shadow="never">
-                    <template #header>
-                        <div>
-                            <span class="flex items-center font-bold"><!-- card title -->
-                                <svg t="1682516849883" class="icon mr-2" viewBox="0 0 1024 1024" version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg" p-id="23470" width="16" height="16">
-                                    <path
-                                        d="M358.191515 472.401532H114.41843A114.557372 114.557372 0 0 1 0 358.191515V114.41843A114.557372 114.557372 0 0 1 114.41843 0h243.773085A114.557372 114.557372 0 0 1 472.401532 114.41843v243.773085A114.557372 114.557372 0 0 1 358.191515 472.401532zM114.41843 76.417895A38.139477 38.139477 0 0 0 76.417895 114.41843v243.773085a38.139477 38.139477 0 0 0 38.139477 38.139476h243.634143a38.139477 38.139477 0 0 0 38.139476-38.139476V114.41843A38.139477 38.139477 0 0 0 358.191515 76.417895zM909.581362 472.401532H665.808277a114.557372 114.557372 0 0 1-114.41843-114.210017V114.41843A114.557372 114.557372 0 0 1 665.808277 0h243.773085a114.557372 114.557372 0 0 1 114.41843 114.41843v243.773085A114.557372 114.557372 0 0 1 909.581362 472.401532zM665.808277 76.417895a38.139477 38.139477 0 0 0-38.139477 38.139477v243.634143a38.139477 38.139477 0 0 0 38.139477 38.139476h243.773085a38.139477 38.139477 0 0 0 38.139476-38.139476V114.41843a38.139477 38.139477 0 0 0-38.139476-38.000535zM358.191515 1023.999792H114.41843A114.557372 114.557372 0 0 1 0 909.581362V665.808277a114.557372 114.557372 0 0 1 114.41843-114.41843h243.773085A114.557372 114.557372 0 0 1 472.401532 665.808277v243.773085a114.557372 114.557372 0 0 1-114.210017 114.41843zM114.41843 627.6688A38.139477 38.139477 0 0 0 76.417895 665.808277v243.773085a38.139477 38.139477 0 0 0 38.139477 38.139476h243.634143a38.139477 38.139477 0 0 0 38.139476-38.139476V665.808277a38.139477 38.139477 0 0 0-38.139476-38.139477zM787.729555 1023.999792a236.200766 236.200766 0 0 1-69.470814-10.351152 35.430115 35.430115 0 0 1 20.841244-67.734043 165.271065 165.271065 0 1 0-109.416531-108.999706 35.430115 35.430115 0 0 1-67.664572 20.841244 236.200766 236.200766 0 1 1 225.710673 166.035244z"
-                                        fill="#707070" p-id="23471"></path>
+
+    <div class="container mx-auto max-w-screen-xl mt-5">
+        <div class="grid grid-cols-4">
+            <!-- 左边栏 -->
+            <div class="col-span-4 px-3 md:col-span-3 sm:col-span-4">
+                <div class="mb-3 w-full font-medium p-5 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                    <h2 class="mb-2 font-bold text-gray-900 uppercase dark:text-white">分类</h2>
+
+                    <div
+                            class="text-base font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <a @click="goCatagoryArticleListPage(item.id, item.name)" v-for="(item, index) in categories" :key="index"
+                                class="flex items-end block w-full px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                <svg class="w-4 h-4 mr-2 mb-2px text-gray-800 inline dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="0.9"
+                                        d="M2.539 17h12.476l4-9H5m-2.461 9a1 1 0 0 1-.914-1.406L5 8m-2.461 9H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.443a1 1 0 0 1 .8.4l2.7 3.6H16a1 1 0 0 1 1 1v2H5" />
                                 </svg>
-                                <span style="margin-top: 2px;">分类</span>
-                            </span>
+                                {{ item.name }}
+                            </a>
                         </div>
-                    </template>
-                    <!-- card body -->
-                    <ul class="flex">
-                        <li class="mr-3 mb-2" v-for="(item, index) in categories" :key="index">
-                            <a @click="goCatagoryArticleListPage(item.id, item.name)" class="flex items-center mr-5 category-item"><svg t="1682517537745" class="icon mr-1"
-                                    viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="28201"
-                                    width="16" height="16">
-                                    <path d="M506 894.2a33 32.9 0 1 0 66 0 33 32.9 0 1 0-66 0Z" fill="#707070" p-id="28202">
-                                    </path>
-                                    <path
-                                        d="M864 388.7v-4.4c0-70.7-57.3-128-128-128H511.8l-82.5-110.9c-7.4-12.9-18-16.2-27.3-16l-0.1-0.1H192.1c-70.7 0-128 57.3-128 128v542.1c0 70.7 57.3 128 128 128H407v-0.4c18.2 0 33-14.7 33-32.9s-14.8-32.9-33-32.9c-1 0-2.1 0.1-3.1 0.1h-181c-35.3 0-64-28.7-64-64 0-5.5 0.7-10.9 2-16L234 498.9l0.2-0.1c6.7-28.1 31.9-49 62.1-49.1l0.2-0.1h532.2c1.3-0.1 2.5-0.1 3.8-0.1 35.3 0 64 28.7 64 64 0 6.7-1.1 13.3-3 19.4v0.1L821 812.8c-0.1 0.6-0.3 1.1-0.4 1.7l-1.5 5.8-0.5 0.4c-1.5 3.9-3.4 7.5-5.5 11h-1.3c-2.6 4.7-5.8 9.1-9.5 12.9-11.4 10.6-26.7 17.1-43.4 17.1-1.3 0-2.6 0-3.8-0.1h-80.8c-1-0.1-2.1-0.1-3.1-0.1-18.2 0-33 14.7-33 32.9s14.8 32.9 33 32.9v0.2H763l0.5-0.4c59.1-0.2 108.7-40.4 123.2-95l0.2-0.2 67.8-285.5c2.9-10.8 4.5-22.1 4.5-33.8-0.1-59.5-40.5-109.5-95.2-123.9z m-571.5-4.9c-62 0-113.7 44.2-125.5 102.7l-0.5 0.4-38 160.3V257c0-35.3 28.7-64 64-64H383l82.7 111.3c6.6 11.4 19.2 17.2 31.5 15.8h238.5c35.2 0 63.8 28.5 64 63.7H292.5z"
-                                        fill="#707070" p-id="28203"></path>
-                                </svg>
-                                {{ item.name }}</a>
-                        </li>
-                </ul>
-            </el-card>
+                </div>
+            </div>
+            <!-- 右边栏 -->
+            <div class="col-span-4 px-3 md:col-span-1 sm:col-span-4">
+                <UserInfoCard></UserInfoCard>
+            </div>
+        </div>
+    </div>
 
-        </el-col>
-        <el-col :span="7" :offset="0">
-            <UserInfoCard></UserInfoCard>
-        </el-col>
-    </el-row>
-
-</div>
-<Footer></Footer></template>
+    <Footer></Footer>
+</template>
 
 <script setup>
 import Header from '@/layouts/components/Header.vue'
@@ -54,7 +44,7 @@ import { ref } from 'vue'
 const router = useRouter()
 
 const goCatagoryArticleListPage = (id, name) => {
-    router.push({path: '/category/list', query: {id: id, name: name}})
+    router.push({ path: '/category/list', query: { id: id, name: name } })
 }
 
 const categories = ref([])

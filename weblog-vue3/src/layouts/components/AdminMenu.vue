@@ -1,5 +1,5 @@
 <template>
-    <div class="meun" :style="{ width: $store.state.menuWidth }">
+    <div class="meun shadow-md fixed bg-light-50" :style="{ width: $store.state.menuWidth }">
         <span class="logo">
             <!-- <el-icon class="mr-1">
                 <Trophy />
@@ -104,7 +104,6 @@ const handleSelect = (e) => {
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #001428!important;
-    @apply shadow-md fixed bg-light-50;
 }
 
 .admin-el-menu {

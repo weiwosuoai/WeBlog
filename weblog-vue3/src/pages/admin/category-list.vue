@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ElMessage, ElMessageBox } from 'element-plus'
+// import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, reactive } from 'vue'
 import { addCategory, getCategoryPageList, deleteCategory } from '@/api/admin/category'
 import { showMessage } from '@/composables/util'

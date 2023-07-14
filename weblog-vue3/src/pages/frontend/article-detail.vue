@@ -2,28 +2,28 @@
     <Header></Header>
 
     <!-- 文章详情 -->
-    <div class="container mx-auto mt-5">
-        <el-row :gutter="20">
-            <el-col :span="17" :offset="0">
-                <el-card shadow="never">
-                    <template #header>
-                        <div>
-                            <span>
-                                <el-breadcrumb separator="/" class="flex items-center">
-                                    <svg t="1682496102954" class="icon mr-2" viewBox="0 0 1024 1024" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg" p-id="17341" width="17" height="17">
-                                        <path
-                                            d="M841.142857 566.857143V841.142857c0 20.004571-16.566857 36.571429-36.571428 36.571429h-219.428572v-219.428572h-146.285714v219.428572H219.428571c-20.004571 0-36.571429-16.566857-36.571428-36.571429v-274.285714c0-1.133714 0.585143-2.304 0.585143-3.437714L512 292.571429l328.557714 270.848c0.585143 1.133714 0.585143 2.304 0.585143 3.437714z m127.414857-39.424l-35.437714 42.276571a19.017143 19.017143 0 0 1-11.995429 6.290286h-1.718857a17.92 17.92 0 0 1-11.995428-3.986286L511.963429 242.285714 116.516571 572.013714a19.419429 19.419429 0 0 1-13.714285 3.986286 19.017143 19.017143 0 0 1-11.995429-6.290286l-35.437714-42.276571a18.651429 18.651429 0 0 1 2.304-25.709714L468.516571 159.451429c23.990857-20.004571 62.866286-20.004571 86.857143 0l139.446857 116.553142V164.571429c0-10.276571 8.009143-18.285714 18.285715-18.285715h109.714285c10.276571 0 18.285714 8.009143 18.285715 18.285715v233.142857l125.147428 104.009143c7.424 6.290286 8.557714 18.285714 2.304 25.709714z"
-                                            fill="#515151" p-id="17342"></path>
-                                    </svg>
-                                    <el-breadcrumb-item>
-                                        <a href="#" @click="router.push('/')">首页</a>
-                                    </el-breadcrumb-item>
-                                    <el-breadcrumb-item>正文</el-breadcrumb-item>
-                                </el-breadcrumb>
-                            </span>
-                        </div>
-                    </template>
+    <div class="container mx-auto max-w-screen-xl mt-5 mb-3">
+        <div class="grid grid-cols-4">
+            <!-- 左边栏 -->
+            <div class="col-span-4 px-3 md:col-span-3 sm:col-span-4">
+                <div class="bg-white border border-gray-200 p-5 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                    <!-- 面包屑 -->
+                    <div class="pb-5">
+                        <span>
+                            <el-breadcrumb separator="/" class="flex items-center">
+                                <svg class="w-3 h-3 mr-2 mb-1px text-gray-600 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                                </svg>
+                                <el-breadcrumb-item>
+                                    <a href="#" @click="router.push('/')">首页</a>
+                                </el-breadcrumb-item>
+                                <el-breadcrumb-item>正文</el-breadcrumb-item>
+                            </el-breadcrumb>
+                        </span>
+                    </div>
+
                     <!-- 文章主体 -->
                     <article>
                         <h1 class="title mt-2">{{ article.title }}</h1>
@@ -70,44 +70,45 @@
                             </a>
                         </div>
                     </div>
-                </el-card>
-
-            </el-col>
-            <el-col :span="7" :offset="0">
-                <el-affix :offset="70">
+                </div>
+            </div>
+            <!-- 右边栏 -->
+            <div class="col-span-4 px-3 md:col-span-1 sm:col-span-4">
+                <div class="sticky top-21">
                     <UserInfoCard></UserInfoCard>
 
                     <!-- 文章分类 -->
-                    <el-card shadow="none" class="mb-5">
-                        <h2 class="font-bold mb-2">分类</h2>
-                        <ul class="text-gray-500 ml-2">
-                            <li class="flex items-center" v-for="(item, index) in categories" :key="index">
-                                <a class="category-item" @click="goCatagoryArticleListPage(item.id, item.name)">
-                                    <el-icon class="mr-1">
-                                        <FolderOpened />
-                                    </el-icon>
-                                    {{ item.name }}
-                                </a>
-                            </li>
-                        </ul>
-                    </el-card>
+                    <div
+                        class="mb-3 w-full font-medium p-5 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                        <h2 class="mb-2 font-bold text-gray-900 uppercase dark:text-white">分类</h2>
+                        <div
+                            class="text-sm font-medium text-gray-900 bg-white rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <a @click="goCatagoryArticleListPage(item.id, item.name)" v-for="(item, index) in categories"
+                                :key="index"
+                                class="flex items-end block w-full px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                <svg class="w-4 h-4 mr-2 mb-2px text-gray-800 inline dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="0.9"
+                                        d="M2.539 17h12.476l4-9H5m-2.461 9a1 1 0 0 1-.914-1.406L5 8m-2.461 9H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.443a1 1 0 0 1 .8.4l2.7 3.6H16a1 1 0 0 1 1 1v2H5" />
+                                </svg>
+                                {{ item.name }}
+                            </a>
+                        </div>
+                    </div>
 
                     <!-- 文章标签 -->
-                    <el-card shadow="none">
-                        <h2 class="font-bold mb-2">标签</h2>
-                        <ul class="flex flex-wrap">
-                            <li v-for="(item, index) in tags" :key="index">
-                                <a class="tag-item" @click="goTagArticleListPage(item.id, item.name)">
-                                    <el-tag class="mr-2 mb-2" type="info">{{ item.name }}</el-tag>
-                                </a>
-                            </li>
-                        </ul>
-                    </el-card>
-                </el-affix>
-
-            </el-col>
-        </el-row>
-
+                    <div
+                        class="mb-3 w-full font-medium p-5 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+                        <h2 class="mb-2 font-bold text-gray-900 uppercase dark:text-white">标签</h2>
+                        <div @click="goTagArticleListPage(item.id, item.name)" v-for="(item, index) in tags" :key="index"
+                            class="inline-block bg-green-100 text-green-800 text-xs font-medium mr-2 mb-1 px-2.5 py-0.5 rounded hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300 dark:bg-green-900 dark:text-green-300">
+                            {{ item.name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <Footer></Footer>
@@ -221,7 +222,6 @@ const goTagArticleListPage = (id, name) => {
     box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
     content: ' ';
     height: 10px;
-    left: 45px;
     margin-top: -20px;
     position: absolute;
     width: 10px;
@@ -388,11 +388,6 @@ const goTagArticleListPage = (id, name) => {
 
 .cursor-pointer {
     cursor: pointer;
-}
-
-.cursor-pointer:hover {
-    color: rgb(52, 152, 219);
-    font-weight: 600;
 }
 
 .category-item:hover {

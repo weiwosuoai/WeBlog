@@ -1,6 +1,6 @@
 <template>
     <el-affix :offset="0">
-        <div class="header">
+        <div class="header flex text-light-50 top-0 right-0 left-0 items-center">
             <!-- 展开、收缩侧边栏 -->
             <el-icon class="icon-btn" @click="$store.commit('HANDLE_MENU_WIDTH')">
                 <Fold v-if="$store.state.menuWidth == '250px'" />
@@ -30,7 +30,7 @@
                     </el-icon>
                 </el-tooltip>
 
-                <el-dropdown class="dropdown" @command="handleCommand">
+                <el-dropdown class="dropdown flex justify-center items-center text-light-50 mx-5" @command="handleCommand">
                     <span class="flex justify-center items-center">
                         <el-avatar :size="25" :src="$store.state.user.avatar" class="mr-2" />
                         {{ $store.state.user.username }}
@@ -191,7 +191,6 @@ function logout() {
 
 <style>
 .header {
-    @apply flex text-light-50 top-0 right-0 left-0 items-center;
     height: 64px;
     background-color: #fff;
     z-index: 100;
@@ -215,6 +214,5 @@ function logout() {
     height: 64px;
     cursor: pointer;
     color: #374151 !important;
-    @apply flex justify-center items-center text-light-50 mx-5;
 }
 </style>

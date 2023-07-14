@@ -70,6 +70,7 @@ import PVChart from '@/components/PVChart.vue'
 import { ref } from 'vue'
 import { getDashboardArticleStatisticsInfo } from '@/api/admin/dashboard'
 
+
 const articleTotalCount = ref(0)
 const categoryTotalCount = ref(0)
 const tagTotalCount = ref(0)
@@ -86,5 +87,15 @@ getDashboardArticleStatisticsInfo().then((e) => {
 
 
 </script>
+
+<style scope>
+.w-10 {
+    width: 2.5rem!important;
+}
+
+.h-10 {
+    height: 2.5rem!important;
+}
+</style>
 
 

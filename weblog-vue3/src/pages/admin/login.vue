@@ -1,15 +1,18 @@
 <template>
-    <el-row class="login-container">
-        <el-col :span="14">
-            <div class="login-container-left flex justify-center items-center flex-col">
+    <div>
+        <div class="grid grid-cols-6 h-screen bg-white">
+            <!-- 左边栏 -->
+            <div class="col-span-6 md:col-span-4 sm:col-span-6">
+                <div class="login-container-left flex justify-center items-center flex-col">
                 <div class="font-bold text-4xl">Weblog 博客登录</div>
                 <img src="@/assets/login-logo.png" class="login-image">
             </div>
-        </el-col>
-        <el-col :span="10">
-            <div class="login-container-right flex justify-center items-center flex-col">
+            </div>
+            <!-- 右边栏 -->
+            <div class="col-span-6 px-3 md:col-span-2 sm:col-span-6">
+                <div class="login-container-right flex justify-center items-center flex-col">
                 <h2 class="font-bold text-3xl text-gray-800">欢迎回来</h2>
-                <div class="flex items-center justify-center my-5 text-gray-300 space-x-2">
+                <div class="flex items-center justify-center my-5 text-gray-400 space-x-2">
                     <span class="h-[1px] w-16 bg-gray-200"></span>
                     <span>账号密码登录</span>
                     <span class="h-[1px] w-16 bg-gray-200"></span>
@@ -24,14 +27,20 @@
                         show-password size="large"/>
                 </el-form-item>
                 <el-form-item>
-                    <el-button round type="primary" @click="onSubmit" :loading="loading" class="w-[250px] login-btn mt-4" size="large">登录</el-button>
+
+                    <el-button round type="primary" @click="onSubmit" :loading="loading" class="w-[250px] login-btn mt-4" size="large">
+                        登 录
+                    </el-button>
+
                 </el-form-item>
             </el-form>
                 </div>
                 
             </div>
-        </el-col>
-    </el-row>
+            </div>
+            </div>
+            
+    </div>
 </template>
   
 <script setup>
@@ -125,6 +134,10 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
+:deep([type = 'text']:focus) {
+    border-color: transparent!important;
+}
+
 .login-container {
     height: 100vh;
     width: 100%;
@@ -148,7 +161,6 @@ onBeforeUnmount(() => {
 }
 
 .login-btn {
-    /* color: ; */
 }
 </style>
   
