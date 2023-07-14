@@ -42,11 +42,11 @@
 
 ### 前台首页
 
-![博客首页](https://img.quanxiaoha.com/quanxiaoha/168888775123810 "博客首页")
+![博客首页](https://img.quanxiaoha.com/quanxiaoha/168932967952110 "博客首页")
 
 ### 博客详情
 
-![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168888881874564 "博客详情页")
+![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168932977229549 "博客详情页")
 
 ## 功能
 
