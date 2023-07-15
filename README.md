@@ -42,11 +42,11 @@
 
 ### 前台首页
 
-![博客首页](https://img.quanxiaoha.com/quanxiaoha/168932967952110 "博客首页")
+![博客首页](https://img.quanxiaoha.com/quanxiaoha/168888775123810 "博客首页")
 
 ### 博客详情
 
-![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168932977229549 "博客详情页")
+![博客详情页](https://img.quanxiaoha.com/quanxiaoha/168888881874564 "博客详情页")
 
 ## 功能
 
@@ -117,15 +117,16 @@
 
 ### 前端
 
-| 框架         | 说明                            | 版本号 |
-| ------------ | ------------------------------- | ------ |
-| Vue 3        | Javascript 渐进式框架           | 3.2.47 |
-| Vite         | 前端项目构建工具                | 4.3.9  |
-| Element Plus | 饿了么基于 Vue 3 开源的组件框架 | 2.3.3  |
-| vue-router   | Vue 路由管理器                  | 4.1.6  |
-| vuex         | 状态存储组件                    | 4.0.2  |
-| md-editor-v3 | Markdown 编辑器组件             | 3.0.1  |
-| windicss     | CSS 工具类框架                  | 3.5.6  |
-| axios        | 基于 Promise 的网络请求库       | 1.3.5  |
-| Echarts      | 百度开源的数据可视化图表库      | 5.4.2  |
+| 框架         | 说明                            | 版本号  |
+| ------------ | ------------------------------- | ------- |
+| Node         | JavaScript 运行时环境           | 18.15.0 |
+| Vue 3        | Javascript 渐进式框架           | 3.2.47  |
+| Vite         | 前端项目构建工具                | 4.3.9   |
+| Element Plus | 饿了么基于 Vue 3 开源的组件框架 | 2.3.3   |
+| vue-router   | Vue 路由管理器                  | 4.1.6   |
+| vuex         | 状态存储组件                    | 4.0.2   |
+| md-editor-v3 | Markdown 编辑器组件             | 3.0.1   |
+| windicss     | CSS 工具类框架                  | 3.5.6   |
+| axios        | 基于 Promise 的网络请求库       | 1.3.5   |
+| Echarts      | 百度开源的数据可视化图表库      | 5.4.2   |
 
