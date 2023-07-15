@@ -5,39 +5,76 @@
     <div class="container mx-auto max-w-screen-xl mt-5 mb-3">
         <div class="grid grid-cols-4">
             <!-- 左边栏 -->
-            <div class="col-span-4 px-3 md:col-span-3 sm:col-span-4">
+            <div class="col-span-4 px-3 mb-3 md:col-span-3 sm:col-span-4">
                 <div class="bg-white border border-gray-200 p-5 rounded-lg dark:bg-gray-800 dark:border-gray-700">
                     <!-- 面包屑 -->
-                    <div class="pb-5">
-                        <span>
-                            <el-breadcrumb separator="/" class="flex items-center">
-                                <svg class="w-3 h-3 mr-2 mb-1px text-gray-600 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                                </svg>
-                                <el-breadcrumb-item>
-                                    <a href="#" @click="router.push('/')">首页</a>
-                                </el-breadcrumb-item>
-                                <el-breadcrumb-item>正文</el-breadcrumb-item>
-                            </el-breadcrumb>
-                        </span>
-                    </div>
+                    <nav class="flex mb-4" aria-label="Breadcrumb">
+                        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                            <li class="inline-flex items-center">
+                                <a @click="router.push('/')"
+                                    class="cursor-pointer inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                                    <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                                    </svg>
+                                    首页
+                                </a>
+                            </li>
+                            <li aria-current="page">
+                                <div class="flex items-center text-gray-400">
+                                    /
+                                    <span
+                                        class="ml-1 text-sm font-medium text-gray-500 md:ml-4 dark:text-gray-400">正文</span>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+
 
                     <!-- 文章主体 -->
                     <article>
                         <h1 class="title mt-2">{{ article.title }}</h1>
-                        <div class="text-gray-500 text-sm flex items-center article-mata">
-                            <svg t="1682495071994" class="icon mr-2" viewBox="0 0 1024 1024" version="1.1"
+                        <div class="text-gray-400 text-sm flex items-center article-mata">
+                            <!-- <svg t="1682495071994" class="icon mr-2" viewBox="0 0 1024 1024" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" p-id="14886" width="16" height="16">
                                 <path
                                     d="M736 544H512c-17.6 0-32-14.4-32-32V224c0-17.6 14.4-32 32-32s32 14.4 32 32v256h192c17.6 0 32 14.4 32 32s-14.4 32-32 32z m161.6-153.6c-17.6 0-32-14.4-32-32V185.6c0-17.6 14.4-32 32-32s32 14.4 32 32v172.8c0 17.6-14.4 32-32 32zM512 960C265.6 960 64 758.4 64 512S265.6 64 512 64c184 0 347.2 110.4 416 281.6 6.4 16-1.6 35.2-17.6 41.6-16 6.4-35.2-1.6-41.6-17.6C809.6 222.4 670.4 128 512 128c-211.2 0-384 172.8-384 384s172.8 384 384 384c158.4 0 297.6-94.4 356.8-241.6 6.4-16 25.6-24 41.6-17.6 16 6.4 24 25.6 17.6 41.6C859.2 849.6 696 960 512 960z"
                                     fill="#8a8a8a" p-id="14887"></path>
+                            </svg> -->
+                            <svg class="inline w-3 h-3 mr-2 text-gray-400 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 1v3m5-3v3m5-3v3M1 7h18M5 11h10M2 3h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" />
                             </svg>
-                            2023-04-26 12:00:00
+                            发表于 {{ article.updateTime }}
+
+                            <svg class="inline w-3 h-3 ml-5 mr-2 text-gray-400 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M1 5v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H1Zm0 0V2a1 1 0 0 1 1-1h5.443a1 1 0 0 1 .8.4l2.7 3.6H1Z" />
+                            </svg>
+                            分类于&nbsp;<a @click="goCatagoryArticleListPage(article.categoryId, article.categoryName)"
+                                class="text-gray-500 hover:underline">{{ article.categoryName }}</a>
+
+                            <svg class="inline w-3 h-3 ml-5 mr-2 text-gray-400 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 14">
+                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <path d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                    <path d="M10 13c4.97 0 9-2.686 9-6s-4.03-6-9-6-9 2.686-9 6 4.03 6 9 6Z" />
+                                </g>
+                            </svg> 阅读量 {{ article.readNum }}
                         </div>
 
-                        <div class="article-content" v-html="article.content" v-highlightjs>
+                        <div class="article-content" v-viewer v-html="article.content" v-highlightjs>
+                        </div>
+                        <!-- 标签 -->
+                        <div class="mt-5 mb-5">
+                            <div @click="goTagArticleListPage(item.id, item.name)" v-for="(item, index) in article.tags"
+                                :key="index"
+                                class="inline-block rounded-full bg-green-100 text-green-800 text-sm font-medium mr-3 mb-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 hover:bg-green-200 hover:text-green-900">
+                                # {{ item.name }}
+                            </div>
                         </div>
                     </article>
                     <!-- 上下篇 -->
@@ -45,28 +82,30 @@
                         <div class="cursor-pointer">
                             <a v-if="article.preArticleId" @click="goArticleDetail(article.preArticleId)">
                                 <span class="desc">
-                                    <svg t="1686900913558" class="icon" style="display: inline;" viewBox="0 0 1024 1024"
-                                        version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2276" width="20" height="20">
-                                        <path
-                                            d="M682.666667 810.666667a42.666667 42.666667 0 0 1-30.08-12.586667l-256-256a42.666667 42.666667 0 0 1 0-60.16l256-256a42.666667 42.666667 0 1 1 60.16 60.16L487.04 512l225.706667 225.92A42.666667 42.666667 0 0 1 682.666667 810.666667z"
-                                            fill="#bfbfbf" p-id="2277"></path>
+                                    <svg class="inline w-2 h-2 mr-1 mb-3px text-gray-500 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
                                     </svg>
                                     上一篇</span>
-                                <span>{{ article.preArticleTitle }}</span>
+                                <span
+                                    class="hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700">{{
+                                        article.preArticleTitle }}</span>
                             </a>
                         </div>
                         <div class="cursor-pointer">
                             <a v-if="article.nextArticleId" @click="goArticleDetail(article.nextArticleId)">
                                 <span class="desc">
                                     下一篇
-                                    <svg t="1686901823331" class="icon" style="display: inline;" viewBox="0 0 1024 1024"
-                                        version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3410" width="20" height="20">
-                                        <path
-                                            d="M384 810.666667a42.666667 42.666667 0 0 1-30.08-72.746667L579.626667 512 353.92 286.08a42.666667 42.666667 0 0 1 60.16-60.16l256 256a42.666667 42.666667 0 0 1 0 60.16l-256 256A42.666667 42.666667 0 0 1 384 810.666667z"
-                                            fill="#bfbfbf" p-id="3411"></path>
+                                    <svg class="inline w-2 h-2 ml-1 mb-3px text-gray-500 dark:text-white" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                                     </svg>
                                 </span>
-                                <span>{{ article.nextArticleTitle }}</span>
+                                <span
+                                    class="hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700">{{
+                                        article.nextArticleTitle }}</span>
                             </a>
                         </div>
                     </div>
@@ -129,10 +168,15 @@ const route = useRoute()
 const article = reactive({
     title: '',
     content: '',
+    updateTime: '',
+    readNum: 0,
+    categoryId: null,
+    categoryName: '',
     preArticleId: null,
     preArticleTitle: '',
     nextArticleId: null,
-    nextArticleTitle: ''
+    nextArticleTitle: '',
+    tags: [],
 })
 
 function queryArticleDetail(articleId) {
@@ -140,6 +184,11 @@ function queryArticleDetail(articleId) {
     getArticleDetail(articleId).then((e) => {
         article.title = e.data.title
         article.content = e.data.content
+        article.updateTime = e.data.updateTime
+        article.categoryId = e.data.categoryId
+        article.categoryName = e.data.categoryName
+        article.readNum = e.data.readNum
+        article.tags = e.data.tags
         if (e.data.preArticle) {
             console.log('上一篇...')
             console.log(e.data.preArticle)
@@ -351,6 +400,8 @@ const goTagArticleListPage = (id, name) => {
     overflow: hidden;
     display: block;
     margin: 0 auto;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
 }
 
 :deep(strong) {
@@ -401,5 +452,4 @@ const goTagArticleListPage = (id, name) => {
 
 .el-tag:hover {
     background-color: var(--el-color-info-light-8);
-}
-</style>
+}</style>

@@ -7,4 +7,5 @@ import java.util.List;
 public interface CategoryDao {
     List<CategoryDO> selectAllCategory();
 
+    CategoryDO selectByCategoryId(Long categoryId);
 }

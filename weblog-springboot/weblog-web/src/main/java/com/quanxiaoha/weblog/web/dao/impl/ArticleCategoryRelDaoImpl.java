@@ -36,4 +36,11 @@ public class ArticleCategoryRelDaoImpl implements ArticleCategoryRelDao {
         wrapper.lambda().in(ArticleCategoryRelDO::getCategoryId, categoryId);
         return articleCategoryRelMapper.selectList(wrapper);
     }
+
+    @Override
+    public ArticleCategoryRelDO selectByArticleId(Long articleId) {
+        QueryWrapper<ArticleCategoryRelDO> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(ArticleCategoryRelDO::getArticleId, articleId);
+        return articleCategoryRelMapper.selectOne(wrapper);
+    }
 }

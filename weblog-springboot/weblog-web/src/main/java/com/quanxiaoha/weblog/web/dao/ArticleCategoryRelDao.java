@@ -9,4 +9,6 @@ public interface ArticleCategoryRelDao {
     List<ArticleCategoryRelDO> selectByArticleIds(List<Long> articleIds);
 
     List<ArticleCategoryRelDO> selectByCategoryId(Long categoryId);
+
+    ArticleCategoryRelDO selectByArticleId(Long articleId);
 }

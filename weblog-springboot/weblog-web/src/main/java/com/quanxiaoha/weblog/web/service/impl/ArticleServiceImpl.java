@@ -225,7 +225,23 @@ public class ArticleServiceImpl implements ArticleService {
                 .title(articleDO.getTitle())
                 .updateTime(articleDO.getUpdateTime())
                 .content(MarkdownUtil.parse2Html(articleContentDO.getContent()))
+                .readNum(articleDO.getReadNum())
                 .build();
+
+        // 查询文章所属分类
+        ArticleCategoryRelDO articleCategoryRelDO = articleCategoryRelDao.selectByArticleId(articleId);
+        CategoryDO categoryDO = categoryDao.selectByCategoryId(articleCategoryRelDO.getCategoryId());
+        vo.setCategoryId(categoryDO.getId());
+        vo.setCategoryName(categoryDO.getName());
+
+        // 查询文章标签
+        List<ArticleTagRelDO> articleTagRelDOS = articleTagRelDao.selectByArticleId(articleId);
+        List<Long> tagIds = articleTagRelDOS.stream().map(p -> p.getTagId()).collect(Collectors.toList());
+        List<TagDO> tagDOS = tagDao.selectByTagIds(tagIds);
+
+        List<QueryTagListRspVO> queryTagListRspVOS = tagDOS.stream()
+                .map(p -> QueryTagListRspVO.builder().id(p.getId()).name(p.getName()).build()).collect(Collectors.toList());
+        vo.setTags(queryTagListRspVOS);
 
         // 上一篇
         ArticleDO preArticle = articleDao.selectPreArticle(articleId);
