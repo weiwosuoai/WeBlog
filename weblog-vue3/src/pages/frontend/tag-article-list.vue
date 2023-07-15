@@ -54,7 +54,7 @@
                 </div>
 
                 <!-- 分页 -->
-                <div class="flex justify-center mt-5">
+                <div class="flex justify-center mt-5" v-if="total > 0">
                     <el-pagination class="mt-5" v-model:current-page="current" v-model:page-size="size" :small="small"
                         :disabled="disabled" background="true" layout="prev, pager, next" :total="total"
                         @current-change="getArticles" />

@@ -36,4 +36,11 @@ public class ArticleTagRelDaoImpl implements ArticleTagRelDao {
         wrapper.lambda().in(ArticleTagRelDO::getTagId, queryTagId);
         return articleTagRelMapper.selectList(wrapper);
     }
+
+    @Override
+    public List<ArticleTagRelDO> selectByArticleId(Long articleId) {
+        QueryWrapper<ArticleTagRelDO> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(ArticleTagRelDO::getArticleId, articleId);
+        return articleTagRelMapper.selectList(wrapper);
+    }
 }

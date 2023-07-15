@@ -11,7 +11,7 @@
             <!-- 右边栏 -->
             <div class="col-span-6 px-3 md:col-span-2 sm:col-span-6">
                 <div class="login-container-right flex justify-center items-center flex-col">
-                <h2 class="font-bold text-3xl text-gray-800">欢迎回来</h2>
+                <h2 class="font-bold text-3xl text-gray-800 mt-5">欢迎回来</h2>
                 <div class="flex items-center justify-center my-5 text-gray-400 space-x-2">
                     <span class="h-[1px] w-16 bg-gray-200"></span>
                     <span>账号密码登录</span>

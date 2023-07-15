@@ -1,5 +1,6 @@
 package com.quanxiaoha.weblog.web.dao.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.quanxiaoha.weblog.common.domain.mapper.TagMapper;
 import com.quanxiaoha.weblog.common.domain.dos.TagDO;
 import com.quanxiaoha.weblog.web.dao.TagDao;
@@ -25,5 +26,12 @@ public class TagDaoImpl implements TagDao {
     @Override
     public List<TagDO> selectAllTag() {
         return tagMapper.selectList(null);
+    }
+
+    @Override
+    public List<TagDO> selectByTagIds(List<Long> tagIds) {
+        QueryWrapper<TagDO> wrapper = new QueryWrapper<>();
+        wrapper.lambda().in(TagDO::getId, tagIds);
+        return tagMapper.selectList(wrapper);
     }
 }

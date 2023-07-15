@@ -9,4 +9,6 @@ public interface ArticleTagRelDao {
     List<ArticleTagRelDO> selectByArticleIds(List<Long> articleIds);
 
     List<ArticleTagRelDO> selectByTagId(Long queryTagId);
+
+    List<ArticleTagRelDO> selectByArticleId(Long articleId);
 }

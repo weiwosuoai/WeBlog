@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TagDao {
     List<TagDO> selectAllTag();
+
+    List<TagDO> selectByTagIds(List<Long> tagIds);
 }
