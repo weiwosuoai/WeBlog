@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import com.quanxiaoha.weblog.common.PageResponse;
 import com.quanxiaoha.weblog.common.Response;
+import com.quanxiaoha.weblog.common.constant.Constants;
 import com.quanxiaoha.weblog.common.domain.dos.*;
 import com.quanxiaoha.weblog.common.enums.EventEnum;
 import com.quanxiaoha.weblog.common.eventbus.ArticleEvent;
@@ -52,8 +53,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private EventBus eventBus;
 
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-
     @Override
     public PageResponse queryIndexArticlePageList(QueryIndexArticlePageListReqVO queryIndexArticlePageListReqVO) {
         Long current = queryIndexArticlePageListReqVO.getCurrent();
@@ -70,7 +69,7 @@ public class ArticleServiceImpl implements ArticleService {
                             .title(p.getTitle())
                             .titleImage(p.getTitleImage())
                             .description(p.getDescription())
-                            .createTime(FORMAT.format(p.getCreateTime()))
+                            .createTime(Constants.DATE_FORMAT.format(p.getCreateTime()))
                             .build())
                     .collect(Collectors.toList());
 
@@ -152,7 +151,7 @@ public class ArticleServiceImpl implements ArticleService {
                             .title(p.getTitle())
                             .titleImage(p.getTitleImage())
                             .description(p.getDescription())
-                            .createTime(FORMAT.format(p.getCreateTime()))
+                            .createTime(Constants.DATE_FORMAT.format(p.getCreateTime()))
                             .build())
                     .collect(Collectors.toList());
 
@@ -296,7 +295,7 @@ public class ArticleServiceImpl implements ArticleService {
                             .title(p.getTitle())
                             .titleImage(p.getTitleImage())
                             .description(p.getDescription())
-                            .createTime(FORMAT.format(p.getCreateTime()))
+                            .createTime(Constants.DATE_FORMAT.format(p.getCreateTime()))
                             .build())
                     .collect(Collectors.toList());
 

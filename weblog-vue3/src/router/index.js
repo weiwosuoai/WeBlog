@@ -14,6 +14,7 @@ import CategoryList from '@/pages/frontend/category-list.vue'
 import TagList from '@/pages/frontend/tag-list.vue'
 import CategoryArticleList from '@/pages/frontend/category-article-list.vue'
 import TagArticleList from '@/pages/frontend/tag-article-list.vue'
+import ArchiveList from '@/pages/frontend/archive-list.vue'
 
 const routes = [
     {
@@ -89,14 +90,14 @@ const routes = [
         path: '/category',
         component: CategoryList,
         meta: {
-            title: '文章分类'
+            title: '分类'
         },
     },
     {
         path: '/tag',
         component: TagList,
         meta: {
-            title: '标签分类'
+            title: '标签'
         },
     },
     {
@@ -111,6 +112,13 @@ const routes = [
         component: TagArticleList,
         meta: {
             title: '标签文章列表'
+        },
+    },
+    {
+        path: '/archive',
+        component: ArchiveList,
+        meta: {
+            title: '归档'
         },
     }
 ]

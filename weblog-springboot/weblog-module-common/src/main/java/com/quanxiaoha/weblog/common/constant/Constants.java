@@ -16,4 +16,5 @@ public interface Constants {
 
     DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
+    DateFormat MONTH_FORMAT = new SimpleDateFormat("yyyy-MM");
 }

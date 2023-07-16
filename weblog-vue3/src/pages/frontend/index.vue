@@ -29,75 +29,61 @@
                     </div>
                 </div>
 
-                <!-- <div class="el-card mb-3" v-for="(article, index) in articles" :key="index">
-                    <el-row :gutter="20">
-                        <el-col :span="10" :offset="0">
-                            <a class="cursor-pointer" @click="goArticleDetail(article.id)">
-                                <img class="article-img" :src="article.titleImage">
-                            </a>
-                        </el-col>
-                        <el-col :span="14" :offset="0" class="pt-3 pb-3">
-                            <div class="flex flex-col justify-between">
-                                <h2 class="text-black font-bold text-2xl">
-                                    <a class="cursor-pointer" @click="goArticleDetail(article.id)">{{ article.title }}</a>
-                                </h2>
-                                <div class="flex items-center text-gray-500 mt-3 text-sm">
-                                    <el-icon class="mr-1 text-3">
-                                        <Calendar />
-                                    </el-icon>
-                                    <span>{{ article.createTime }}</span>
-                                </div>
-                                <p class="pr-2 mt-3 text-gray-500 flex-grow text-sm">
-                                    {{ article.description }}
-                                </p>
-                                <div class="mt-3 flex bottom-0 text-sm">
-                                    <div class="flex items-center mr-5 text-gray-500">
-                                        <el-tooltip class="box-item" effect="dark" content="标签" placement="bottom-start">
-                                            <svg t="1682517355246" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                xmlns="http://www.w3.org/2000/svg" p-id="26989" width="16" height="16">
-                                                <path
-                                                    d="M940.8 521.6l-448-448C486.4 67.2 480 64 470.4 64L124.8 64C92.8 64 64 92.8 64 124.8l0 345.6c0 9.6 3.2 16 9.6 22.4l448 448c12.8 12.8 28.8 19.2 44.8 19.2 16 0 32-6.4 44.8-19.2L940.8 608C966.4 585.6 966.4 544 940.8 521.6zM566.4 896 128 457.6 128 128l329.6 0L896 566.4 566.4 896z"
-                                                    p-id="26990" fill="#707070"></path>
-                                                <path
-                                                    d="M288 192C233.6 192 192 233.6 192 288s41.6 96 96 96 96-41.6 96-96S342.4 192 288 192zM288 320c-19.2 0-32-12.8-32-32s12.8-32 32-32 32 12.8 32 32S307.2 320 288 320z"
-                                                    p-id="26991" fill="#707070"></path>
-                                            </svg>
-                                        </el-tooltip>
-
-                                        <a class="tag-item" @click="goTagArticleListPage(item.id, item.name)" v-for="(item, index) in article.tags"
-                                            :key="index">
-                                            <el-tag class="ml-2" type="info" size="small">
-                                            {{ item.name }}
-                                        </el-tag>
-                                </a>
-
-                                        
-                                    </div>
-
-                                    <div class="text-gray-500">
-                                        <a @click="goCatagoryArticleListPage(article.category.id, article.category.name)"
-                                            class="flex items-center category-item">
-                                            <el-tooltip class="box-item" effect="dark" content="分类"
-                                                placement="bottom-start">
-                                                <el-icon class="mr-1">
-                                        <FolderOpened />
-                                    </el-icon>
-                                            </el-tooltip>
-                                            {{ article.category.name }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </el-col>
-                    </el-row>
-                </div> -->
-
                 <!-- 分页 -->
-                <div class="flex justify-center mt-50px mb-5" v-if="total > 0">
-                    <el-pagination v-model:current-page="current" v-model:page-size="size" :small="small"
-                        :disabled="disabled" background="true" layout="prev, pager, next" :total="total"
-                        @current-change="getArticles" />
-                </div>
+                <nav aria-label="Page navigation example" v-if="total > 0">
+                    <ul class="flex items-center justify-center mt-10 mb-10 -space-x-px h-10 text-base">
+                        <li>
+                            <a v-if="current > 1" @click="getArticles(current - 1)"
+                                class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                            </a>
+                            <a v-else @click="getArticles(current)"
+                                class="cursor-not-allowed flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li v-for="page in pages" :key="page">
+                            <a @click="getArticles(page)"
+                                class="flex items-center border-gray-300 justify-center px-4 h-10 leading-tight bg-white border dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                :class="[page == current ? 'text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700' : 'text-gray-500  hover:bg-gray-100 hover:text-gray-700']"
+                                >
+                                
+                                {{ page }}
+                            </a>
+                        </li>
+                        <li>
+                            <a v-if="current < pages" @click="getArticles(current + 1)"
+                                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                            <a v-else="current == pages" @click="getArticles(current)"
+                                class="cursor-not-allowed flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
 
             </div>
             <!-- 右边栏 -->
@@ -164,11 +150,12 @@ const articles = ref([])
 const current = ref(1)
 const total = ref(0)
 const size = ref(10)
+const pages = ref(0)
 
 // 获取分页数据
-function getArticles() {
+function getArticles(currentNo) {
     console.log('获取分页数据')
-    getIndexArticles({ current: current.value, size: size.value })
+    getIndexArticles({ current: currentNo, size: size.value })
         .then((res) => {
             console.log(res)
             if (res.success == true) {
@@ -176,10 +163,11 @@ function getArticles() {
                 current.value = res.current
                 total.value = res.total
                 size.value = res.size
+                pages.value = res.pages
             }
         })
 }
-getArticles()
+getArticles(current.value)
 
 // 获取分类
 const categories = ref([])
