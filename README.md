@@ -2,7 +2,7 @@
 
 ## 简介
 
-一款由 Spring Boot + Vue 3.2 开发的前后端分离博客。
+一款由 Spring Boot + Vue 3.2 + Vite 4.3 开发的前后端分离博客。
 
 ![Weblog 后台仪表盘](https://img.quanxiaoha.com/quanxiaoha/168887767469647 "Weblog 后台仪表盘")
 

@@ -25,6 +25,8 @@ public class PageResponse<T> extends Response<List<T>> {
     private long size = 10L;
     // 当前页码
     private long current;
+    // 总页数
+    private long pages = 0L;
 
     public static <T> PageResponse<T> success(IPage page, List<T> data) {
         PageResponse<T> response = new PageResponse<>();
@@ -32,6 +34,7 @@ public class PageResponse<T> extends Response<List<T>> {
         response.setCurrent(Objects.isNull(page) ? 0 : page.getCurrent());
         response.setTotal(Objects.isNull(page) ? 0 : page.getTotal());
         response.setSize(Objects.isNull(page) ? 0 : page.getSize());
+        response.setPages(Objects.isNull(page) ? 0 : page.getPages());
         response.setData(data);
         return response;
     }

@@ -54,11 +54,59 @@
                 </div>
 
                 <!-- 分页 -->
-                <div class="flex justify-center mt-5" v-if="total > 0">
-                    <el-pagination class="mt-5" v-model:current-page="current" v-model:page-size="size" :small="small"
-                        :disabled="disabled" background="true" layout="prev, pager, next" :total="total"
-                        @current-change="getArticles" />
-                </div>
+                <nav aria-label="Page navigation example" v-if="total > 0">
+                    <ul class="flex items-center justify-center mt-10 mb-10 -space-x-px h-10 text-base">
+                        <li>
+                            <a v-if="current > 1" @click="getArticles(current - 1)"
+                                class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                            </a>
+                            <a v-else @click="getArticles(current)"
+                                class="cursor-not-allowed flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li v-for="page in pages" :key="page">
+                            <a @click="getArticles(page)"
+                                class="flex items-center border-gray-300 justify-center px-4 h-10 leading-tight bg-white border dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                                :class="[page == current ? 'text-blue-600 bg-blue-50 hover:bg-blue-100 hover:text-blue-700' : 'text-gray-500  hover:bg-gray-100 hover:text-gray-700']"
+                                >
+                                
+                                {{ page }}
+                            </a>
+                        </li>
+                        <li>
+                            <a v-if="current < pages" @click="getArticles(current + 1)"
+                                class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                            <a v-else="current == pages" @click="getArticles(current)"
+                                class="cursor-not-allowed flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
             <!-- 右边栏 -->
@@ -118,11 +166,12 @@ const articles = ref([])
 const current = ref(1)
 const total = ref(0)
 const size = ref(10)
+const pages = ref(0)
 
 // 获取分页数据
-function getArticles() {
+function getArticles(currentNo) {
     console.log('获取标签分页数据' + route.query.id)
-    getTagArticles({ current: current.value, size: size.value, tagId: route.query.id })
+    getTagArticles({ current: currentNo, size: size.value, tagId: route.query.id })
         .then((res) => {
             console.log(res)
             if (res.success == true) {
@@ -130,10 +179,11 @@ function getArticles() {
                 current.value = res.current
                 total.value = res.total
                 size.value = res.size
+                pages.value = res.pages
             }
         })
 }
-getArticles()
+getArticles(current.value)
 
 const goCatagoryArticleListPage = (id, name) => {
     router.push({ path: '/category/list', query: { id: id, name: name } })
