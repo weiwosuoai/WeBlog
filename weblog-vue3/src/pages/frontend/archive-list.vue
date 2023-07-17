@@ -6,7 +6,7 @@
             <!-- 左边栏 -->
             <div class="col-span-4 px-3 md:col-span-3 sm:col-span-4">
                 <div v-for="(item, index) in archives" :key="index"
-                    class="p-5 mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                    class="p-5 mb-4 border border-gray-200 rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700">
                     <time class="text-lg font-semibold text-gray-900 dark:text-white">{{ item.month }}</time>
                     <ol class="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
                         <li v-for="(item2, index2) in item.articles" :key="index2">

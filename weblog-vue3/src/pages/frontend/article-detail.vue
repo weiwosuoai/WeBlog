@@ -12,7 +12,7 @@
                         <ol class="inline-flex items-center space-x-1 md:space-x-3">
                             <li class="inline-flex items-center">
                                 <a @click="router.push('/')"
-                                    class="cursor-pointer inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                                    class="cursor-pointer inline-flex items-center text-sm font-medium text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
                                     <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor" viewBox="0 0 20 20">
                                         <path
@@ -66,8 +66,9 @@
                             </svg> 阅读量 {{ article.readNum }}
                         </div>
 
-                        <div class="article-content" v-viewer v-html="article.content" v-highlightjs>
+                        <div class="article-content" v-viewer v-html="article.content" v-highlight>
                         </div>
+                        
                         <!-- 标签 -->
                         <div class="mt-5 mb-5">
                             <div @click="goTagArticleListPage(item.id, item.name)" v-for="(item, index) in article.tags"
@@ -262,7 +263,7 @@ const goTagArticleListPage = (id, name) => {
     color: #f8f8f2;
     border-radius: 5px;
     padding: 32px 0 0;
-    font-size: 16px;
+    font-size: 17px;
 }
 
 :deep(pre:before) {
@@ -287,6 +288,20 @@ const goTagArticleListPage = (id, name) => {
     font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, Microsoft Yahei, Arial, sans-serif;
 }
 
+:deep(.article-content h1, .article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6)  {
+    margin: 30px 0 10px 0;
+    color: #292525;
+    line-height: 150%;
+    font-family: PingFang SC,Helvetica Neue,Helvetica,Hiragino Sans GB,Microsoft YaHei,"\5FAE\8F6F\96C5\9ED1",Arial,sans-serif;
+}
+
+:deep(.article-content h3) {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
 :deep(.image-caption) {
     min-width: 20%;
     max-width: 80%;
@@ -306,11 +321,22 @@ const goTagArticleListPage = (id, name) => {
     padding-bottom: 10px;
 }
 
-:deep(code) {
-    display: inline;
+:deep(code:not(pre code)) {
+    padding: 2px 4px;
+    margin: 0 2px;
+    font-size: 95%!important;
+    border-radius: 4px;
+    color: rgb(41, 128, 185);
+    background-color: rgba(27, 31, 35, 0.05);
     font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
-    border-radius: 2px;
-    padding: 5px;
+}
+
+:deep(pre code) {
+    display: block;
+    font-size: 95% !important;
+    background-color: rgba(27, 31, 35, 0.05);
+    font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+    /* color: #fff; */
 }
 
 :deep(article ul) {
@@ -324,12 +350,7 @@ const goTagArticleListPage = (id, name) => {
     font-size: 16px;
 }
 
-:deep(pre code) {
-    display: block;
-    font-size: 95% !important;
-    background-color: rgba(27, 31, 35, 0.05);
-    font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
-}
+
 
 :deep(blockquote) {
     /* margin: 20px 0; */
