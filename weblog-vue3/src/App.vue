@@ -6,8 +6,10 @@
 
 <script setup>
 import { defineComponent } from 'vue'
+
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 let locale = zhCn
+
 </script>
 
 <style>

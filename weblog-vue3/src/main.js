@@ -8,12 +8,12 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import store from './store'
 import "@/permission"
 
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+// import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 // 代码高亮
-import VueHighlightJS from 'vue3-highlightjs'
-import 'vue3-highlightjs/styles/monokai-sublime.css'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/tokyo-night-dark.css'
 
-// 富文本图片预览
+// 富文本图片点击预览
 import "viewerjs/dist/viewer.css";
 import Viewer from "v-viewer";
 
@@ -22,7 +22,12 @@ const app = createApp(App)
 app.use(store)
 app.use(router)
 
-app.use(VueHighlightJS)
+app.directive('highlight',function (el) {
+  let highlight = el.querySelectorAll('pre code');
+  highlight.forEach((block)=>{
+      hljs.highlightBlock(block)
+  })
+});
 
 // 引入图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

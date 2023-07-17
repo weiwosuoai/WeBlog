@@ -29,6 +29,7 @@
     "universal-cookie": "^4.0.4",
     "v-viewer": "^3.0.11",
     "vue": "^3.2.47",
+    "vue-highlightjs": "^1.3.3",
     "vue-router": "^4.1.6",
     "vue3-highlightjs": "^1.0.5",
     "vuex": "^4.0.2"

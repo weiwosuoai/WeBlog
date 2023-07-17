@@ -9,7 +9,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('flowbite/plugin')
+    require('flowbite/plugin'),
   ],
   corePlugins: {
     // 取消 tailwindcss 的默认样式
