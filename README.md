@@ -134,3 +134,13 @@
 | axios        | 基于 Promise 的网络请求库       | 1.3.5   |
 | Echarts      | 百度开源的数据可视化图表库      | 5.4.2   |
 
+## 数据库初始化脚本
+
+初始化脚本位于入口模块 `weblog-web` 中的 `sql` 目录下：
+
+![](https://img.quanxiaoha.com/quanxiaoha/168972702174332)
+
+小伙伴们在部署时，请先新建一个名为 `weblog` 的库，然后依次执行 `schema.sql` 和 `data.sql` 即可：
+
+- `schema.sql` : 表结构脚本；
+- `data.sql` : 初始化数据脚本，如登录用户信息、博客基本设置信息等；

@@ -36,12 +36,6 @@
                     <article>
                         <h1 class="title mt-2">{{ article.title }}</h1>
                         <div class="text-gray-400 text-sm flex items-center article-mata">
-                            <!-- <svg t="1682495071994" class="icon mr-2" viewBox="0 0 1024 1024" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg" p-id="14886" width="16" height="16">
-                                <path
-                                    d="M736 544H512c-17.6 0-32-14.4-32-32V224c0-17.6 14.4-32 32-32s32 14.4 32 32v256h192c17.6 0 32 14.4 32 32s-14.4 32-32 32z m161.6-153.6c-17.6 0-32-14.4-32-32V185.6c0-17.6 14.4-32 32-32s32 14.4 32 32v172.8c0 17.6-14.4 32-32 32zM512 960C265.6 960 64 758.4 64 512S265.6 64 512 64c184 0 347.2 110.4 416 281.6 6.4 16-1.6 35.2-17.6 41.6-16 6.4-35.2-1.6-41.6-17.6C809.6 222.4 670.4 128 512 128c-211.2 0-384 172.8-384 384s172.8 384 384 384c158.4 0 297.6-94.4 356.8-241.6 6.4-16 25.6-24 41.6-17.6 16 6.4 24 25.6 17.6 41.6C859.2 849.6 696 960 512 960z"
-                                    fill="#8a8a8a" p-id="14887"></path>
-                            </svg> -->
                             <svg class="inline w-3 h-3 mr-2 text-gray-400 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -262,8 +256,17 @@ const goTagArticleListPage = (id, name) => {
     background: #21252b;
     color: #f8f8f2;
     border-radius: 5px;
-    padding: 32px 0 0;
+    padding: 10px 0 0;
     font-size: 17px;
+    padding-left: 15px;
+}
+
+:deep(pre code.hljs) {
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+    padding-left: 0!important;
+    padding-top: 25px!important;
 }
 
 :deep(pre:before) {
@@ -272,7 +275,7 @@ const goTagArticleListPage = (id, name) => {
     box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
     content: ' ';
     height: 10px;
-    margin-top: -20px;
+    margin-top: 5px;
     position: absolute;
     width: 10px;
 }
@@ -313,12 +316,6 @@ const goTagArticleListPage = (id, name) => {
     font-size: 13px;
     color: #999;
     text-align: center;
-}
-
-:deep(pre) {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 10px;
 }
 
 :deep(code:not(pre code)) {
