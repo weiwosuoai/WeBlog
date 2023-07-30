@@ -1,6 +1,6 @@
 package com.quanxiaoha.weblog.web.model.vo.article;
 
-import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListRspVO;
+import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListItemRspVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +26,7 @@ public class QueryArticleDetailRspVO {
     private Long categoryId;
     private String categoryName;
     private Long readNum;
-    private List<QueryTagListRspVO> tags;
+    private List<QueryTagListItemRspVO> tags;
     private QueryArticleLinkRspVO preArticle;
     private QueryArticleLinkRspVO nextArticle;
 }

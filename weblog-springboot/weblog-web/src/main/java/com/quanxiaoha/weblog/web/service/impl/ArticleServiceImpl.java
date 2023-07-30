@@ -5,15 +5,15 @@ import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 import com.quanxiaoha.weblog.common.PageResponse;
 import com.quanxiaoha.weblog.common.Response;
-import com.quanxiaoha.weblog.common.constant.Constants;
 import com.quanxiaoha.weblog.common.domain.dos.*;
 import com.quanxiaoha.weblog.common.enums.EventEnum;
 import com.quanxiaoha.weblog.common.eventbus.ArticleEvent;
 import com.quanxiaoha.weblog.common.exception.ResourceNotFoundException;
+import com.quanxiaoha.weblog.web.convert.ArticleConvert;
 import com.quanxiaoha.weblog.web.dao.*;
 import com.quanxiaoha.weblog.web.model.vo.article.*;
-import com.quanxiaoha.weblog.web.model.vo.category.QueryCategoryListRspVO;
-import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListRspVO;
+import com.quanxiaoha.weblog.web.model.vo.category.QueryCategoryListItemRspVO;
+import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListItemRspVO;
 import com.quanxiaoha.weblog.web.service.ArticleService;
 import com.quanxiaoha.weblog.web.utils.MarkdownUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +51,8 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleTagRelDao articleTagRelDao;
     @Autowired
     private EventBus eventBus;
+    @Autowired
+    private ArticleConvert articleConvert;
 
     @Override
     public PageResponse queryIndexArticlePageList(QueryIndexArticlePageListReqVO queryIndexArticlePageListReqVO) {
@@ -61,16 +62,10 @@ public class ArticleServiceImpl implements ArticleService {
         IPage<ArticleDO> articleDOIPage = articleDao.queryArticlePageList(current, size);
         List<ArticleDO> records = articleDOIPage.getRecords();
 
-        List<QueryIndexArticlePageListRspVO> list = null;
+        List<QueryIndexArticlePageItemRspVO> list = null;
         if (!CollectionUtils.isEmpty(records)) {
             list = records.stream()
-                    .map(p -> QueryIndexArticlePageListRspVO.builder()
-                            .id(p.getId())
-                            .title(p.getTitle())
-                            .titleImage(p.getTitleImage())
-                            .description(p.getDescription())
-                            .createTime(Constants.DATE_FORMAT.format(p.getCreateTime()))
-                            .build())
+                    .map(articleDO -> articleConvert.convert(articleDO))
                     .collect(Collectors.toList());
 
             List<Long> articleIds = list.stream().map(p -> p.getId()).collect(Collectors.toList());
@@ -88,11 +83,11 @@ public class ArticleServiceImpl implements ArticleService {
                     Long categoryId = articleCategoryRelDO.getCategoryId();
                     String categoryName = categoryIdNameMap.get(categoryId);
 
-                    QueryCategoryListRspVO queryCategoryListRspVO = QueryCategoryListRspVO.builder()
+                    QueryCategoryListItemRspVO queryCategoryListItemRspVO = QueryCategoryListItemRspVO.builder()
                             .id(categoryId)
                             .name(categoryName)
                             .build();
-                    p.setCategory(queryCategoryListRspVO);
+                    p.setCategory(queryCategoryListItemRspVO);
                 }
                 return p;
             }).collect(Collectors.toList());
@@ -106,19 +101,19 @@ public class ArticleServiceImpl implements ArticleService {
                 Long articleId = p.getId();
                 List<ArticleTagRelDO> articleTagRelDOList = articleTagRelDOS.stream().filter(rel -> Objects.equals(rel.getArticleId(), articleId)).collect(Collectors.toList());
 
-                List<QueryTagListRspVO> queryTagListRspVOS = Lists.newArrayList();
+                List<QueryTagListItemRspVO> queryTagListItemRspVOS = Lists.newArrayList();
                 articleTagRelDOList.forEach(rel -> {
                     Long tagId = rel.getTagId();
                     String tagName = tagIdNameMap.get(tagId);
 
-                    QueryTagListRspVO queryTagListRspVO = QueryTagListRspVO.builder()
+                    QueryTagListItemRspVO queryTagListItemRspVO = QueryTagListItemRspVO.builder()
                             .id(tagId)
                             .name(tagName)
                             .build();
-                    queryTagListRspVOS.add(queryTagListRspVO);
+                    queryTagListItemRspVOS.add(queryTagListItemRspVO);
                 });
 
-                p.setTags(queryTagListRspVOS);
+                p.setTags(queryTagListItemRspVOS);
                 return p;
             }).collect(Collectors.toList());
         }
@@ -143,16 +138,10 @@ public class ArticleServiceImpl implements ArticleService {
         IPage<ArticleDO> articleDOIPage = articleDao.queryArticlePageListByArticleIds(current, size, categoryArticleIds);
         List<ArticleDO> records = articleDOIPage.getRecords();
 
-        List<QueryIndexArticlePageListRspVO> list = null;
+        List<QueryIndexArticlePageItemRspVO> list = null;
         if (!CollectionUtils.isEmpty(records)) {
             list = records.stream()
-                    .map(p -> QueryIndexArticlePageListRspVO.builder()
-                            .id(p.getId())
-                            .title(p.getTitle())
-                            .titleImage(p.getTitleImage())
-                            .description(p.getDescription())
-                            .createTime(Constants.DATE_FORMAT.format(p.getCreateTime()))
-                            .build())
+                    .map(articleDO -> articleConvert.convert(articleDO))
                     .collect(Collectors.toList());
 
             List<Long> articleIds = list.stream().map(p -> p.getId()).collect(Collectors.toList());
@@ -170,11 +159,11 @@ public class ArticleServiceImpl implements ArticleService {
                     Long categoryId = articleCategoryRelDO.getCategoryId();
                     String categoryName = categoryIdNameMap.get(categoryId);
 
-                    QueryCategoryListRspVO queryCategoryListRspVO = QueryCategoryListRspVO.builder()
+                    QueryCategoryListItemRspVO queryCategoryListItemRspVO = QueryCategoryListItemRspVO.builder()
                             .id(categoryId)
                             .name(categoryName)
                             .build();
-                    p.setCategory(queryCategoryListRspVO);
+                    p.setCategory(queryCategoryListItemRspVO);
                 }
                 return p;
             }).collect(Collectors.toList());
@@ -188,19 +177,19 @@ public class ArticleServiceImpl implements ArticleService {
                 Long articleId = p.getId();
                 List<ArticleTagRelDO> articleTagRelDOList = articleTagRelDOS.stream().filter(rel -> Objects.equals(rel.getArticleId(), articleId)).collect(Collectors.toList());
 
-                List<QueryTagListRspVO> queryTagListRspVOS = Lists.newArrayList();
+                List<QueryTagListItemRspVO> queryTagListItemRspVOS = Lists.newArrayList();
                 articleTagRelDOList.forEach(rel -> {
                     Long tagId = rel.getTagId();
                     String tagName = tagIdNameMap.get(tagId);
 
-                    QueryTagListRspVO queryTagListRspVO = QueryTagListRspVO.builder()
+                    QueryTagListItemRspVO queryTagListItemRspVO = QueryTagListItemRspVO.builder()
                             .id(tagId)
                             .name(tagName)
                             .build();
-                    queryTagListRspVOS.add(queryTagListRspVO);
+                    queryTagListItemRspVOS.add(queryTagListItemRspVO);
                 });
 
-                p.setTags(queryTagListRspVOS);
+                p.setTags(queryTagListItemRspVOS);
                 return p;
             }).collect(Collectors.toList());
         }
@@ -214,7 +203,7 @@ public class ArticleServiceImpl implements ArticleService {
         // 判断文章是否存在
         ArticleDO articleDO = articleDao.selectArticleById(articleId);
 
-        if (articleDO == null) {
+        if (Objects.isNull(articleDO)) {
             throw new ResourceNotFoundException();
         }
 
@@ -238,9 +227,9 @@ public class ArticleServiceImpl implements ArticleService {
         List<Long> tagIds = articleTagRelDOS.stream().map(p -> p.getTagId()).collect(Collectors.toList());
         List<TagDO> tagDOS = tagDao.selectByTagIds(tagIds);
 
-        List<QueryTagListRspVO> queryTagListRspVOS = tagDOS.stream()
-                .map(p -> QueryTagListRspVO.builder().id(p.getId()).name(p.getName()).build()).collect(Collectors.toList());
-        vo.setTags(queryTagListRspVOS);
+        List<QueryTagListItemRspVO> queryTagListItemRspVOS = tagDOS.stream()
+                .map(p -> QueryTagListItemRspVO.builder().id(p.getId()).name(p.getName()).build()).collect(Collectors.toList());
+        vo.setTags(queryTagListItemRspVOS);
 
         // 上一篇
         ArticleDO preArticle = articleDao.selectPreArticle(articleId);
@@ -287,16 +276,10 @@ public class ArticleServiceImpl implements ArticleService {
         IPage<ArticleDO> articleDOIPage = articleDao.queryArticlePageListByArticleIds(current, size, tagArticleIds);
         List<ArticleDO> records = articleDOIPage.getRecords();
 
-        List<QueryIndexArticlePageListRspVO> list = null;
+        List<QueryIndexArticlePageItemRspVO> list = null;
         if (!CollectionUtils.isEmpty(records)) {
             list = records.stream()
-                    .map(p -> QueryIndexArticlePageListRspVO.builder()
-                            .id(p.getId())
-                            .title(p.getTitle())
-                            .titleImage(p.getTitleImage())
-                            .description(p.getDescription())
-                            .createTime(Constants.DATE_FORMAT.format(p.getCreateTime()))
-                            .build())
+                    .map(articleDO -> articleConvert.convert(articleDO))
                     .collect(Collectors.toList());
 
             List<Long> articleIds = list.stream().map(p -> p.getId()).collect(Collectors.toList());
@@ -314,11 +297,11 @@ public class ArticleServiceImpl implements ArticleService {
                     Long categoryId = articleCategoryRelDO.getCategoryId();
                     String categoryName = categoryIdNameMap.get(categoryId);
 
-                    QueryCategoryListRspVO queryCategoryListRspVO = QueryCategoryListRspVO.builder()
+                    QueryCategoryListItemRspVO queryCategoryListItemRspVO = QueryCategoryListItemRspVO.builder()
                             .id(categoryId)
                             .name(categoryName)
                             .build();
-                    p.setCategory(queryCategoryListRspVO);
+                    p.setCategory(queryCategoryListItemRspVO);
                 }
                 return p;
             }).collect(Collectors.toList());
@@ -332,19 +315,19 @@ public class ArticleServiceImpl implements ArticleService {
                 Long articleId = p.getId();
                 List<ArticleTagRelDO> articleTagRelDOList = articleTagRelDOS.stream().filter(rel -> Objects.equals(rel.getArticleId(), articleId)).collect(Collectors.toList());
 
-                List<QueryTagListRspVO> queryTagListRspVOS = Lists.newArrayList();
+                List<QueryTagListItemRspVO> queryTagListItemRspVOS = Lists.newArrayList();
                 articleTagRelDOList.forEach(rel -> {
                     Long tagId = rel.getTagId();
                     String tagName = tagIdNameMap.get(tagId);
 
-                    QueryTagListRspVO queryTagListRspVO = QueryTagListRspVO.builder()
+                    QueryTagListItemRspVO queryTagListItemRspVO = QueryTagListItemRspVO.builder()
                             .id(tagId)
                             .name(tagName)
                             .build();
-                    queryTagListRspVOS.add(queryTagListRspVO);
+                    queryTagListItemRspVOS.add(queryTagListItemRspVO);
                 });
 
-                p.setTags(queryTagListRspVOS);
+                p.setTags(queryTagListItemRspVOS);
                 return p;
             }).collect(Collectors.toList());
         }

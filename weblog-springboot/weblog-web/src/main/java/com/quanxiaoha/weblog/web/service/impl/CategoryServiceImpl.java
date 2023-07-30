@@ -5,7 +5,7 @@ import com.quanxiaoha.weblog.common.Response;
 import com.quanxiaoha.weblog.common.domain.mapper.CategoryMapper;
 import com.quanxiaoha.weblog.common.domain.dos.CategoryDO;
 import com.quanxiaoha.weblog.web.dao.CategoryDao;
-import com.quanxiaoha.weblog.web.model.vo.category.QueryCategoryListRspVO;
+import com.quanxiaoha.weblog.web.model.vo.category.QueryCategoryListItemRspVO;
 import com.quanxiaoha.weblog.web.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +31,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, CategoryDO>
     @Override
     public Response queryCategoryList() {
         List<CategoryDO> categoryDOList = categoryDao.selectAllCategory();
-        List<QueryCategoryListRspVO> list = null;
+        List<QueryCategoryListItemRspVO> list = null;
         if (!CollectionUtils.isEmpty(categoryDOList)) {
             list = categoryDOList.stream()
-                    .map(p -> QueryCategoryListRspVO.builder()
+                    .map(p -> QueryCategoryListItemRspVO.builder()
                             .id(p.getId())
                             .name(p.getName())
                             .build())
