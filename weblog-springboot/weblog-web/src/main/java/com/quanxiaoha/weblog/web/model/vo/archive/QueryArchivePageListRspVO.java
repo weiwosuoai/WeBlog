@@ -1,8 +1,6 @@
 package com.quanxiaoha.weblog.web.model.vo.archive;
 
 
-import com.quanxiaoha.weblog.web.model.vo.category.QueryCategoryListRspVO;
-import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListRspVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

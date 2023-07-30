@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 /**
  * @author: 犬小哈
  * @url: www.quanxiaoha.com
@@ -17,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class QueryCategoryListRspVO {
+public class QueryCategoryListItemRspVO {
     private Long id;
     private String name;
 }

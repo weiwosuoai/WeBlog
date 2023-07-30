@@ -5,7 +5,7 @@ import com.quanxiaoha.weblog.common.Response;
 import com.quanxiaoha.weblog.common.domain.mapper.TagMapper;
 import com.quanxiaoha.weblog.common.domain.dos.TagDO;
 import com.quanxiaoha.weblog.web.dao.TagDao;
-import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListRspVO;
+import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListItemRspVO;
 import com.quanxiaoha.weblog.web.service.TagService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +31,11 @@ public class TagServiceImpl extends ServiceImpl<TagMapper, TagDO> implements Tag
     @Override
     public Response queryTagList() {
         List<TagDO> tagDOS = tagDao.selectAllTag();
-        List<QueryTagListRspVO> list = null;
+        List<QueryTagListItemRspVO> list = null;
 
         if (!CollectionUtils.isEmpty(tagDOS)) {
             list = tagDOS.stream()
-                    .map(p -> QueryTagListRspVO.builder()
+                    .map(p -> QueryTagListItemRspVO.builder()
                             .id(p.getId())
                             .name(p.getName())
                             .build())

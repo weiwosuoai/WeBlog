@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class QueryTagListRspVO {
+public class QueryTagListItemRspVO {
     private Long id;
     private String name;
 }

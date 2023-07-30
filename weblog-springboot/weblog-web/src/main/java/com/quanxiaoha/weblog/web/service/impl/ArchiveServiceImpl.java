@@ -8,17 +8,12 @@ import com.quanxiaoha.weblog.common.Response;
 import com.quanxiaoha.weblog.common.constant.Constants;
 import com.quanxiaoha.weblog.common.domain.dos.*;
 import com.quanxiaoha.weblog.common.domain.mapper.ArticleMapper;
-import com.quanxiaoha.weblog.common.domain.mapper.TagMapper;
+import com.quanxiaoha.weblog.web.convert.ArticleConvert;
 import com.quanxiaoha.weblog.web.dao.ArticleDao;
-import com.quanxiaoha.weblog.web.dao.TagDao;
 import com.quanxiaoha.weblog.web.model.vo.archive.QueryArchiveItemRspVO;
 import com.quanxiaoha.weblog.web.model.vo.archive.QueryArchivePageListReqVO;
 import com.quanxiaoha.weblog.web.model.vo.archive.QueryArchivePageListRspVO;
-import com.quanxiaoha.weblog.web.model.vo.article.QueryIndexArticlePageListRspVO;
-import com.quanxiaoha.weblog.web.model.vo.category.QueryCategoryListRspVO;
-import com.quanxiaoha.weblog.web.model.vo.tag.QueryTagListRspVO;
 import com.quanxiaoha.weblog.web.service.ArchiveService;
-import com.quanxiaoha.weblog.web.service.TagService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +35,8 @@ public class ArchiveServiceImpl extends ServiceImpl<ArticleMapper, ArticleDO> im
 
     @Autowired
     private ArticleDao articleDao;
+    @Autowired
+    private ArticleConvert articleConvert;
 
     @Override
     public Response queryArchive(QueryArchivePageListReqVO queryArchivePageListReqVO) {
@@ -53,13 +50,7 @@ public class ArchiveServiceImpl extends ServiceImpl<ArticleMapper, ArticleDO> im
         List<QueryArchiveItemRspVO> itemRspVOList = null;
         if (!CollectionUtils.isEmpty(records)) {
             itemRspVOList = records.stream()
-                    .map(p -> QueryArchiveItemRspVO.builder()
-                            .id(p.getId())
-                            .title(p.getTitle())
-                            .titleImage(p.getTitleImage())
-                            .createMonth(Constants.MONTH_FORMAT.format(p.getCreateTime()))
-                            .createTime(Constants.DATE_FORMAT.format(p.getCreateTime()))
-                            .build())
+                    .map(articleDO -> articleConvert.convert2Archive(articleDO))
                     .collect(Collectors.toList());
 
             Map<String, List<QueryArchiveItemRspVO>> map = itemRspVOList.stream().collect(Collectors.groupingBy(QueryArchiveItemRspVO::getCreateMonth));

@@ -20,6 +20,15 @@ public class IndexController {
     @Autowired
     private ArticleService articleService;
 
+    /**
+     * 适配当前端打包 /dist 到 Spring Boot 项目中，能够访问到首页
+     * @return
+     */
+    @GetMapping("/")
+    public String home() {
+        return "index.html";
+    }
+
     @PostMapping("/article/list")
     @ApiOperationLog(description = "获取首页文章分页数据")
     public PageResponse queryArticlePageList(@RequestBody QueryIndexArticlePageListReqVO queryArticlePageListReqVO) {
