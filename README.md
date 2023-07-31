@@ -82,10 +82,11 @@
 
 ![WeBlog 项目模块一览](https://img.quanxiaoha.com/quanxiaoha/168886574109414 "WeBlog 项目模块一览")
 
-| 项目名            | 说明     |
-| ----------------- | -------- |
-| weblog-springboot | 后端项目 |
-| weblog-vue3       | 前端项目 |
+| 项目名            | 说明                                             |
+| ----------------- | ------------------------------------------------ |
+| weblog-springboot | 后端项目                                         |
+| weblog-vue3       | 前端项目                                         |
+| sql               | 数据库初始化脚本（包括表结构以及相关初始化数据） |
 
 ### 后端项目模块介绍
 
@@ -136,9 +137,9 @@
 
 ## 数据库初始化脚本
 
-初始化脚本位于入口模块 `weblog-web` 中的 `sql` 目录下：
+初始化脚本位于  `sql`  模块中，目录如下：
 
-![](https://img.quanxiaoha.com/quanxiaoha/168972702174332)
+![](https://img.quanxiaoha.com/quanxiaoha/169077045489682)
 
 小伙伴们在部署时，请先新建一个名为 `weblog` 的库，然后依次执行 `schema.sql` 和 `data.sql` 即可：
 
