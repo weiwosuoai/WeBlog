@@ -80,7 +80,7 @@
 
 ## 模块介绍
 
-![WeBlog 项目模块一览](https://img.quanxiaoha.com/quanxiaoha/168886574109414 "WeBlog 项目模块一览")
+![WeBlog 项目模块一览](https://img.quanxiaoha.com/quanxiaoha/169077198059341 "WeBlog 项目模块一览")
 
 | 项目名            | 说明                                             |
 | ----------------- | ------------------------------------------------ |
