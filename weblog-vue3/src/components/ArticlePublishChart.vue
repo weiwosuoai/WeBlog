@@ -3,7 +3,7 @@
         <el-card shadow="never" class="border-1">
             <template #header>
                 <div class="flex justify-between">
-                    <span class="text-sm"><!-- card title -->文章发布热点图</span>
+                    <span class="text-sm">文章发布热点图</span>
                 </div>
             </template>
             <!-- card body -->
@@ -20,8 +20,18 @@ import { ref, reactive, onMounted, onBeforeMount } from 'vue';
 import * as echarts from 'echarts';
 import { getDashboardPublishArticleStatisticsInfo } from '@/api/admin/dashboard'
 
-const year = new Date().getFullYear().toString()
-console.log('year:' + year)
+/*
+* origin：将整个年度的活跃图都显示出来，这就导致因屏幕尺寸不足难以显示后面月数的热图信息
+* repair：只显示已当前日期为基准，前四后二总共六个月的热图信息
+* */
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+const currentMonth = currentDate.getMonth() + 1;
+const startYear = currentYear;
+const startMonth = currentMonth - 4; // 获取最近三个月的数据
+const endYear = currentYear;
+const endMonth = currentMonth + 2;
+
 const myData = []
 
 var myChart = null
@@ -49,7 +59,7 @@ getDashboardPublishArticleStatisticsInfo().then((e) => {
             max: 10
         },
         calendar: {
-            range: year
+            range: [startYear + '-' + startMonth, endYear + '-' + endMonth],
         },
         series: {
             type: 'heatmap',
@@ -58,7 +68,6 @@ getDashboardPublishArticleStatisticsInfo().then((e) => {
         },
         gradientColor: [
             '#fff',
-            // '#9be9a8',
             '#40c463',
             '#30a14e',
             '#216e39',
