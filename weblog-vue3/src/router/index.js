@@ -129,5 +129,5 @@ const router = createRouter({
     routes, // `routes: routes` 的缩写
 })
 
-// 暴露出去
+// ES6 模块导出语句，它用于将 router 对象导出，以便其他文件可以导入和使用这个对象
 export default router

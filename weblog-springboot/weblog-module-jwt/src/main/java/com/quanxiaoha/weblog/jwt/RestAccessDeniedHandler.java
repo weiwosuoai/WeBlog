@@ -2,17 +2,11 @@ package com.quanxiaoha.weblog.jwt;
 
 import com.quanxiaoha.weblog.common.Response;
 import com.quanxiaoha.weblog.common.enums.ResponseCodeEnum;
-import com.quanxiaoha.weblog.jwt.util.ResultUtil;
+import com.quanxiaoha.weblog.jwt.utils.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

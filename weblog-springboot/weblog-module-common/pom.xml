@@ -5,11 +5,10 @@
 	<parent>
 		<groupId>com.quanxiaoha</groupId>
 		<artifactId>weblog-springboot</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>${revision}</version>
 	</parent>
 	<groupId>com.quanxiaoha</groupId>
 	<artifactId>weblog-module-common</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>weblog-module-common</name>
 	<description>weblog-module-common</description>
 

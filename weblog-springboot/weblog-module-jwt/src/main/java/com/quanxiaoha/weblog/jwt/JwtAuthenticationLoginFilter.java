@@ -2,6 +2,7 @@ package com.quanxiaoha.weblog.jwt;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,6 +20,7 @@ import java.io.IOException;
  * @date: 2023-04-18 16:21
  * @description: 登录认证过滤器
  **/
+@Slf4j
 public class JwtAuthenticationLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     /**
@@ -34,6 +36,8 @@ public class JwtAuthenticationLoginFilter extends AbstractAuthenticationProcessi
         JsonNode jsonNode = mapper.readTree(request.getInputStream());
         String username = jsonNode.get("username").textValue();
         String password = jsonNode.get("password").textValue();
+
+        log.info("==> 用户尝试登录认证，username: {}, password: {}", username, password);
 
         // 将用户名、密码封装到 Token 中
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken

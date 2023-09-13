@@ -1,4 +1,4 @@
-package com.quanxiaoha.weblog.jwt.util;
+package com.quanxiaoha.weblog.jwt.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quanxiaoha.weblog.common.Response;

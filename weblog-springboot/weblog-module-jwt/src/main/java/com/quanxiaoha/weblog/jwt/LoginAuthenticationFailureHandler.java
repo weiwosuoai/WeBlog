@@ -2,9 +2,8 @@ package com.quanxiaoha.weblog.jwt;
 
 import com.quanxiaoha.weblog.common.Response;
 import com.quanxiaoha.weblog.common.enums.ResponseCodeEnum;
-import com.quanxiaoha.weblog.jwt.util.ResultUtil;
+import com.quanxiaoha.weblog.jwt.utils.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;

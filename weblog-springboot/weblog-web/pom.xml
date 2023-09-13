@@ -5,12 +5,11 @@
     <parent>
         <groupId>com.quanxiaoha</groupId>
         <artifactId>weblog-springboot</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <groupId>com.quanxiaoha</groupId>
     <artifactId>weblog-web</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>weblog-web</name>
     <description>weblog-web</description>
 

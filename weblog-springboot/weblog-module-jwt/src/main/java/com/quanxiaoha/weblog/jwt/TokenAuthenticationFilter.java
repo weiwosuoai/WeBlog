@@ -56,22 +56,17 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             if (StringUtils.isNotBlank(token) && jwtTokenHelper.validateToken(token)) {
                 String username = jwtTokenHelper.getUsernameByToken(token);
 
-                // 判断 token 是否有效
-                if (StringUtils.isNotBlank(username)
-                        && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
+                if (StringUtils.isNotBlank(username)) {
+                    // && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())
 
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                    boolean isTokenValid = jwtTokenHelper.isTokenValid(token, userDetails);
-
-                    if (isTokenValid) {
-                        // 将用户信息存入 authentication，方便后续校验
-                        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
-                                userDetails.getAuthorities());
-                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                        // 将 authentication 存入 ThreadLocal，方便后续获取用户信息
-                        SecurityContextHolder.getContext().setAuthentication(authentication);
-                    }
+                    // 将用户信息存入 authentication，方便后续校验
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
+                            userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    // 将 authentication 存入 ThreadLocal，方便后续获取用户信息
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         }

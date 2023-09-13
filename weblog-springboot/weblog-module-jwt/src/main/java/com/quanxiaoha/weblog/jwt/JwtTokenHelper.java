@@ -3,6 +3,7 @@ package com.quanxiaoha.weblog.jwt;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -63,7 +64,7 @@ public class JwtTokenHelper implements InitializingBean {
     ///////////////////////////////////////////////////////////////////////////
     public String generateToken(String username) {
         LocalDateTime now = LocalDateTime.now();
-        // Token 一个小时内有效
+        // 设置 Token 失效时间
         LocalDateTime expireTime = now.plusHours(tokenExpireTime);
 
         return Jwts.builder()

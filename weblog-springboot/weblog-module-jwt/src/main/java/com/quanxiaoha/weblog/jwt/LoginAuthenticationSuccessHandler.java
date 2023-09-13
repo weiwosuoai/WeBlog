@@ -2,7 +2,8 @@ package com.quanxiaoha.weblog.jwt;
 
 import com.quanxiaoha.weblog.common.Response;
 import com.quanxiaoha.weblog.jwt.model.CreateTokenRspVO;
-import com.quanxiaoha.weblog.jwt.util.ResultUtil;
+import com.quanxiaoha.weblog.jwt.utils.ResultUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,7 @@ import java.io.IOException;
  * @description: 登录认证成功后处理
  **/
 @Component
+@Slf4j
 public class LoginAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     private JwtTokenHelper jwtTokenHelper;
@@ -37,6 +39,8 @@ public class LoginAuthenticationSuccessHandler implements AuthenticationSuccessH
         CreateTokenRspVO tokenRspDTO = CreateTokenRspVO.builder()
                 .token(token)
                 .build();
+
+        log.info("==> 用户认证成功, username: {}, token: {}", username, token);
 
         ResultUtil.ok(response, Response.success(tokenRspDTO));
     }

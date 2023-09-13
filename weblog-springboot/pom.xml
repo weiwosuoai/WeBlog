@@ -11,12 +11,13 @@
 
     <groupId>com.quanxiaoha</groupId>
     <artifactId>weblog-springboot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
     <name>weblog-springboot</name>
-    <description>weblog-springboot</description>
+    <description>前后端分离博客 Weblog By 犬小哈</description>
 
     <!-- 版本号统一管理 -->
     <properties>
+        <revision>0.0.1-SNAPSHOT</revision>
         <java.version>1.8</java.version>
         <!-- 依赖包版本 -->
         <mapstruct.version>1.5.5.Final</mapstruct.version>
@@ -29,8 +30,12 @@
         <minio.version>8.2.1</minio.version>
         <flexmark.version>0.62.2</flexmark.version>
 
-        <!-- 插件版本 -->
+        <!-- Maven 相关 -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <!-- 多模块项目父工程必须指定为 pom -->
@@ -50,25 +55,25 @@
             <dependency>
                 <groupId>com.quanxiaoha</groupId>
                 <artifactId>weblog-module-common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.quanxiaoha</groupId>
                 <artifactId>weblog-module-admin</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.quanxiaoha</groupId>
                 <artifactId>weblog-module-jwt</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.quanxiaoha</groupId>
                 <artifactId>weblog-web</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
@@ -164,8 +169,6 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source> <!-- depending on your project -->
-                        <target>${java.version}</target> <!-- depending on your project -->
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.projectlombok</groupId>
