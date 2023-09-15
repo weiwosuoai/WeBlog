@@ -1,20 +1,9 @@
 <template>
-    <div class="meun shadow-md fixed bg-light-50" :style="{ width: $store.state.menuWidth }">
-        <span class="logo">
-            <!-- <el-icon class="mr-1">
-                <Trophy />
-            </el-icon> -->
-            <svg t="1682227931603" class="icon mr-1" viewBox="0 0 1024 1024" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" p-id="10154" width="30" height="30">
-                <path
-                    d="M597.333333 565.333333h-170.666666c-17.493333 0-32 14.506667-32 32s14.506667 32 32 32h170.666666c17.493333 0 32-14.506667 32-32s-14.506667-32-32-32zM426.666667 458.666667h85.333333c17.493333 0 32-14.506667 32-32s-14.506667-32-32-32h-85.333333c-17.493333 0-32 14.506667-32 32s14.506667 32 32 32z"
-                    fill="#ffffff" p-id="10155"></path>
-                <path
-                    d="M690.773333 85.333333H333.653333C178.346667 85.333333 85.76 177.92 85.76 333.226667v357.12c0 155.306667 92.586667 247.893333 247.893333 247.893333h357.12c155.306667 0 247.893333-92.586667 247.893334-247.893333V333.226667C938.666667 177.92 846.08 85.333333 690.773333 85.333333zM768 640c0 85.333333-42.666667 128-128 128H384c-85.333333 0-128-42.666667-128-128V384c0-85.333333 42.666667-128 128-128h170.666667c85.333333 0 128 42.666667 128 128v42.666667c0 23.466667 19.2 42.666667 42.666666 42.666666s42.666667 19.2 42.666667 42.666667v128z"
-                    fill="#ffffff" p-id="10156"></path>
-            </svg>
-            <span v-if="$store.state.menuWidth == '250px'">WeBlog</span>
-        </span>
+    <div class="meun shadow-md fixed bg-light-50 transition-all duration-300" :style="{ width: $store.state.menuWidth }">
+        <div class="flex items-center justify-center h-[64px]">
+            <img v-if="$store.state.menuWidth == '250px'" src="@/assets/weblog-logo.png" class="h-[60px]">
+            <img v-else src="@/assets/weblog-logo-mini.png" class="h-[60px]">
+        </div>
 
         <el-menu :collapse="isCollapse"  class="border-0 admin-el-menu"
         :default-active="defaultActive"
@@ -96,7 +85,7 @@ const handleSelect = (e) => {
 
 <style>
 .meun {
-    transition: all 0.2s;
+    transition: all 0.3s;
     width: 250px;
     top: 0;
     bottom: 0;

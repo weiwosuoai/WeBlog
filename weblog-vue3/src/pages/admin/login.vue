@@ -2,44 +2,49 @@
     <div>
         <div class="grid grid-cols-6 h-screen bg-white">
             <!-- 左边栏 -->
-            <div class="col-span-6 md:col-span-4 sm:col-span-6">
+            <div class="col-span-6 md:col-span-3 sm:col-span-6">
                 <div class="login-container-left flex justify-center items-center flex-col">
-                <div class="font-bold text-4xl">Weblog 博客登录</div>
-                <img src="@/assets/login-logo.png" class="login-image">
-            </div>
+                    <div class="animate__animated animate__bounceInLeft items-center flex flex-col">
+                        <h2 class="font-bold text-4xl mb-7 text-white">Weblog 博客登录</h2>
+                        <p class="text-white">一款由 Spring Boot + Mybaits Plus + Vue 3.2 + Vite 4 开发的前后端分离博客。</p>
+                        <img src="@/assets/developer.png" class="login-image">
+                    </div>
+                </div>
             </div>
             <!-- 右边栏 -->
-            <div class="col-span-6 px-3 md:col-span-2 sm:col-span-6">
-                <div class="login-container-right flex justify-center items-center flex-col">
-                <h2 class="font-bold text-3xl text-gray-800 mt-5">欢迎回来</h2>
-                <div class="flex items-center justify-center my-5 text-gray-400 space-x-2">
-                    <span class="h-[1px] w-16 bg-gray-200"></span>
-                    <span>账号密码登录</span>
-                    <span class="h-[1px] w-16 bg-gray-200"></span>
-                </div>
-                <div>
-                    <el-form ref="formRef" :rules="rules" :model="form" class="w-[250px]">
-                <el-form-item prop="username">
-                    <el-input v-model="form.username" :prefix-icon="User" placeholder="请输入用户名" size="large"/>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <el-input v-model="form.password" type="password" autocomplete="off" :prefix-icon="Lock" placeholder="请输入密码"
-                        show-password size="large"/>
-                </el-form-item>
-                <el-form-item>
+            <div class="col-span-6 px-3 md:col-span-3 sm:col-span-6">
+                <div
+                    class="login-container-right flex justify-center items-center flex-col animate__animated animate__bounceInRight animate__fast">
+                    <h2 class="font-bold text-3xl text-gray-800 mt-5">欢迎回来</h2>
+                    <div class="flex items-center justify-center my-5 text-gray-400 space-x-2">
+                        <span class="h-[1px] w-16 bg-gray-200"></span>
+                        <span>账号密码登录</span>
+                        <span class="h-[1px] w-16 bg-gray-200"></span>
+                    </div>
+                    <div>
+                        <el-form ref="formRef" :rules="rules" :model="form" class="w-[300px]">
+                            <el-form-item prop="username">
+                                <el-input v-model="form.username" :prefix-icon="User" placeholder="请输入用户名" size="large" clearable/>
+                            </el-form-item>
+                            <el-form-item prop="password">
+                                <el-input v-model="form.password" type="password" autocomplete="off" :prefix-icon="Lock"
+                                    placeholder="请输入密码" show-password size="large" clearable/>
+                            </el-form-item>
+                            <el-form-item>
 
-                    <el-button round type="primary" @click="onSubmit" :loading="loading" class="w-[250px] login-btn mt-4" size="large">
-                        登 录
-                    </el-button>
+                                <el-button round type="primary" @click="onSubmit" :loading="loading"
+                                    class="w-[300px] login-btn mt-4" size="large">
+                                    登 录
+                                </el-button>
 
-                </el-form-item>
-            </el-form>
+                            </el-form-item>
+                        </el-form>
+                    </div>
+
                 </div>
-                
             </div>
-            </div>
-            </div>
-            
+        </div>
+
     </div>
 </template>
   
@@ -134,8 +139,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-:deep([type = 'text']:focus) {
-    border-color: transparent!important;
+:deep([type='text']:focus) {
+    border-color: transparent !important;
 }
 
 .login-container {
@@ -160,7 +165,6 @@ onBeforeUnmount(() => {
     height: 450px;
 }
 
-.login-btn {
-}
+.login-btn {}
 </style>
   

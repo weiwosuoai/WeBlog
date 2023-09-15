@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import 'virtual:windi.css'
 
 import '@/assets/main.css'
+import 'animate.css';
+import 'nprogress/nprogress.css'
 import App from './App.vue'
 import router from './router'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
