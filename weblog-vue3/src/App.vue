@@ -20,4 +20,8 @@ body {
   background: #f4f4f4;
   line-height: 1.6;
 }
+
+#nprogress .bar {
+   background: #409eff!important;
+}
 </style>

@@ -2,17 +2,17 @@ import router from '@/router/index'
 import { getToken } from '@/composables/auth'
 import { notification, showMessage } from '@/composables/util'
 import store from '@/store'
+import { showPageLoading, hidePageLoading } from '@/composables/util'
 
 
 // 全局前置守卫
 router.beforeEach(async (to, from, next) => {
     console.log('全局前置守卫 >>>>')
+    showPageLoading()
     // if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
     // else next()
 
-    // 设置页面标题
-    let title = (to.meta.title ? to.meta.title : '') + ' - WeBlog'
-    document.title = title
+    
 
     const token = getToken()
 
@@ -47,3 +47,10 @@ router.beforeEach(async (to, from, next) => {
     next()
 })
 
+router.afterEach((to, from) => {
+    // 设置页面标题
+    let title = (to.meta.title ? to.meta.title : '') + ' - WeBlog'
+    document.title = title
+
+    hidePageLoading()
+})

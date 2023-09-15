@@ -1,4 +1,5 @@
 // import { ElNotification, ElMessageBox, ElMessage } from 'element-plus'
+import nprogress from "nprogress"
 
 export function notification(message, type = 'success', dangerouslyUseHTMLString = false) {
     ElNotification({
@@ -27,4 +28,12 @@ export function showMessage(message = '提示内容', type = 'success', customCl
         message,
         customClass,
     })
+}
+
+export function showPageLoading() {
+    nprogress.start()
+}
+
+export function hidePageLoading() {
+    nprogress.done()
 }
