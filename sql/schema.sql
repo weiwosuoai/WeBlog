@@ -175,3 +175,18 @@ CREATE TABLE `t_user_role`
 
 SET
 FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- Table structure for t_visitor_record
+-- ----------------------------
+CREATE TABLE `t_visitor_record`
+(
+    `id`   BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `visitor` VARCHAR(20) NOT NULL DEFAULT 'agent',
+    `ip_address` CHAR(15) NOT NULL DEFAULT '127.0.0.1',
+    `ip_region` VARCHAR(64) NOT NULL DEFAULT '未知',
+    `visit_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '访问时间',
+    `is_notify` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    PRIMARY KEY (`id`),
+    KEY `ip_visit_time` (`ip_address`, `visit_time`)
+) ENGINE = INNODB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '访客记录表';
