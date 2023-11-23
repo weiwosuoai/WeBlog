@@ -16,7 +16,7 @@
 
 - GitHub 地址：[https://github.com/weiwosuoai/WeBlog](https://github.com/weiwosuoai/WeBlog)
 - Gitee 地址：[https://gitee.com/AllenJiang/WeBlog](https://gitee.com/AllenJiang/WeBlog)
-- 演示地址：http://118.31.41.16/
+- 演示地址：http://116.62.199.48/
   - 游客账号：test
   - 游客密码：test
    > PS: 演示环境的服务器配置很低，带宽很小，若打开速度较慢，你可以部署到本地来访问哟~
